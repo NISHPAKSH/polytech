@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="electure_array">
+        <item>Select Course</item>
+        <item>Engineering</item>
+        <item>Non-Engineering</item>
+        <item>PERSONAL GROOMING and SOFT SKILLS</item>
+        </string-array>
+    <string-array name="labmanual_array">
+        <item>Select Course</item>
+        <item>Engineering</item>
+    </string-array>
+</resources>

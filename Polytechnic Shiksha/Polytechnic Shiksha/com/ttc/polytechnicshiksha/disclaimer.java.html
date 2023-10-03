@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>disclaimer.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+disclaimer.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.ttc.polytechnicshiksha;
+
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.appcompat.app.AlertDialog;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+
+<span class="s0">import </span>android.text.Html;
+<span class="s0">import </span>android.view.Menu;
+<span class="s0">import </span>android.view.MenuItem;
+<span class="s0">import </span>android.widget.TextView;
+
+<span class="s0">public class </span>disclaimer <span class="s0">extends </span>AppCompatActivity {
+    <span class="s0">public static </span>String url;
+    <span class="s0">public static </span>String title;
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_disclaimer);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(<span class="s2">&quot;Legal&quot;</span>);
+
+        TextView tview1 = (TextView) findViewById(R.id.tv1);
+        TextView tview2 = (TextView) findViewById(R.id.tv2);
+        TextView tview3 = (TextView) findViewById(R.id.tv3);
+        TextView tview4 = (TextView) findViewById(R.id.tv4);
+        TextView tview5 = (TextView) findViewById(R.id.tv5);
+        TextView tview6 = (TextView) findViewById(R.id.tv6);
+        TextView tview7 = (TextView) findViewById(R.id.tv7);
+        TextView tview8 = (TextView) findViewById(R.id.tv8);
+        TextView tview9 = (TextView) findViewById(R.id.tv9);
+        TextView tview10 = (TextView) findViewById(R.id.tv10);
+        TextView tview11 = (TextView) findViewById(R.id.tv11);
+        TextView tview12 = (TextView) findViewById(R.id.tv12);
+        TextView tview13 = (TextView) findViewById(R.id.tv13);
+        TextView tview14 = (TextView) findViewById(R.id.tv14);
+        TextView tview15 = (TextView) findViewById(R.id.tv15);
+        TextView tview16 = (TextView) findViewById(R.id.tv16);
+        TextView tview17 = (TextView) findViewById(R.id.tv17);
+        TextView tview18 = (TextView) findViewById(R.id.tv18);
+        TextView tview19 = (TextView) findViewById(R.id.tv19);
+        TextView tview20 = (TextView) findViewById(R.id.tv20);
+        TextView tview21 = (TextView) findViewById(R.id.tv21);
+        TextView tview22 = (TextView) findViewById(R.id.tv22);
+        TextView tview23 = (TextView) findViewById(R.id.tv23);
+
+        <span class="s3">//String text = &quot;&lt;font color=#cc0029&gt;First Color&lt;/font&gt; &lt;font color=#ffcc00&gt;Second Color&lt;/font&gt;&quot;;</span>
+        String text1 = <span class="s2">&quot;POLYTECHNIC SHIKSHA LEGAL:&quot;</span>;
+        String text2 = <span class="s2">&quot;This is in the context of and to govern the access and usage of the Polytechnic Shiksha application an initiative of DTE (Directorate of Technical Education), Government of Rajasthan (India) and TTC &amp; LRDC, Jodhpur.&quot;</span>;
+        String text3 = <span class="s2">&quot;TERMS OF SERVICE AND PRIVACY POLICY:&quot;</span>;
+        String text4 = <span class="s2">&quot;1.</span><span class="s0">\t</span><span class="s2">Please read our Terms of Service so you understand what’s up with your use of Polytechnic Shiksha application. You agree to our Terms of Service (“Terms”) by installing, accessing, or using our apps, services, features, software, or website (together, “Services”).&quot;</span>;
+        String text5 = <span class="s2">&quot;2.</span><span class="s0">\t</span><span class="s2">Polytechnic Shiksha application (referred to as DTE, TTC &amp; LRDC or We/Us) provides an online learning system to users around the world. Services are suitable for a person studying at Polytechnic Colleges in Rajasthan (India).&quot;</span>;
+        String text6 = <span class="s2">&quot;3.</span><span class="s0">\t</span><span class="s2">The TTC &amp; LRDC Portal/website and Polytechnic Shiksha application System allows the user to access all content free of charge. We do not ask users to make payments.&quot;</span>;
+        String text7 = <span class="s2">&quot;4.</span><span class="s0">\t</span><span class="s2">The TTC &amp; LRDC Portal/website and Polytechnic Shiksha application allows the user to use the services without signing up or registration.&quot;</span>;
+        String text8 = <span class="s2">&quot;5.</span><span class="s0">\t</span><span class="s2">You must provide certain devices, software, and data connections to use our services, which we otherwise do not supply.&quot;</span>;
+        String text9 = <span class="s2">&quot;6.</span><span class="s0">\t</span><span class="s2">You provide consent to downloading and installing updates to our services.&quot;</span>;
+        String text10 = <span class="s2">&quot;7.</span><span class="s0">\t</span><span class="s2">Material featured on this site or through app may be reproduced free of cost in any format or media without requiring specific permission. This is subject to the material being reproduced accurately and not being used in a derogatory manner or in a misleading context. Where the material is being published or issued to others, the source must be prominently acknowledged. However, the permission to reproduce this material does not extend to any other material on this site, which is explicitly identified as being the copyright of a third party. Authorization to reproduce such material must be obtained from the department / copyright holder concerned.&quot;</span>;
+        String text11 = <span class="s2">&quot;8.</span><span class="s0">\t</span><span class="s2">We honor about your privacy. We do not collect information when we operate and provide our Services, including when you install, access, or use our Services. No cookies are set in user devices.&quot;</span>;
+        String text12 = <span class="s2">&quot;9.</span><span class="s0">\t</span><span class="s2">The sole purpose of our services is to enhance knowledge of its users. Our services are not for commercial use.&quot;</span>;
+        String text13 = <span class="s2">&quot;INTELLECTUAL PROPERTY RIGHTS:&quot;</span>;
+        String text14 = <span class="s2">&quot;1.</span><span class="s0">\t</span><span class="s2">Polytechnic Shiksha app is designed, developed, maintained by TTC and LRDC, Jodhpur, Rajasthan (India). &quot;</span>;
+        String text15 = <span class="s2">&quot;2.</span><span class="s0">\t</span><span class="s2">This app is having all the rights to use content and logo, icon of TTC &amp; LRDC, Jodhpur, Rajasthan (India).&quot;</span>;
+        String text16 = <span class="s2">&quot;3.</span><span class="s0">\t</span><span class="s2">Its content is developed by faculties of Polytechnic Colleges of Rajasthan(India) under Directorate of Technical Education (DTE), Government of Rajasthan (India). These institutions are governed by DTE and part of our organization.&quot;</span>;
+        String text17 = <span class="s2">&quot;4.https://hte.rajasthan.gov.in/college/ttcjodhpur/ Website And email ID ttc.jodhpur@rajasthan.gov.in  and google accounts ttc.jodhpur@gmail.com and app.lrdc@gmail.com belong to us. And the same can be verified.&quot;</span>;
+        String text18 = <span class="s2">&quot;5.</span><span class="s0">\t</span><span class="s2">We do not infringe copyrights, trade mark knowingly or unknowingly of any other company.&quot;</span>;
+        String text19 = <span class="s2">&quot;DISCLAIMER:&quot;</span>;
+        String text20 = <span class="s2">&quot;1.</span><span class="s0">\t</span><span class="s2">This Application is the intellectual property of the Department of Technical Education, Government of Rajasthan. All information posted is merely for educational and informational purposes.&quot;</span>;
+        String text21 = <span class="s2">&quot;2.</span><span class="s0">\t</span><span class="s2">Teachers Training Center and Learning Resource Development Center, Department of Technical Education, Government of Rajasthan (TTC &amp; LRDC) hereby excludes any warranty, express or implied, as to the quality, accuracy, timeliness, completeness, performance, fitness for a particular purpose of the Mobile Application or any of its content.&quot;</span>;
+        String text22 = <span class="s2">&quot;3.</span><span class="s0">\t</span><span class="s2">TTC &amp; LRDC will not be liable for any damages arising in contract, tort or otherwise from the use of or inability to use the Mobile Application, or any of its contents, or from any action taken (or refrained from being taken) as a result of using the Mobile Application or any such contents.&quot;</span>;
+        String text23 = <span class="s2">&quot;4.</span><span class="s0">\t</span><span class="s2">TTC &amp; LRDC made best effort to secure this Mobile Application. In spite of that TTC &amp; LRDC makes no warranty that the Mobile Application is free from infection by viruses or anything else which has contaminating or destructive properties.&quot;</span>;
+
+
+        tview1.setText(Html.fromHtml(text1));
+        tview2.setText(Html.fromHtml(text2));
+        tview3.setText(Html.fromHtml(text3));
+        tview4.setText(Html.fromHtml(text4));
+        tview5.setText(Html.fromHtml(text5));
+        tview6.setText(Html.fromHtml(text6));
+        tview7.setText(Html.fromHtml(text7));
+        tview8.setText(Html.fromHtml(text8));
+        tview9.setText(Html.fromHtml(text9));
+        tview10.setText(Html.fromHtml(text10));
+        tview11.setText(Html.fromHtml(text11));
+        tview12.setText(Html.fromHtml(text12));
+        tview13.setText(Html.fromHtml(text13));
+        tview14.setText(Html.fromHtml(text14));
+        tview15.setText(Html.fromHtml(text15));
+        tview16.setText(Html.fromHtml(text16));
+        tview17.setText(Html.fromHtml(text17));
+        tview18.setText(Html.fromHtml(text18));
+        tview19.setText(Html.fromHtml(text19));
+        tview20.setText(Html.fromHtml(text20));
+        tview21.setText(Html.fromHtml(text21));
+        tview22.setText(Html.fromHtml(text22));
+        tview23.setText(Html.fromHtml(text23));
+
+    }
+    @Override
+    <span class="s0">public boolean </span>onCreateOptionsMenu(Menu menu) {
+        <span class="s3">// Inflate the menu; this adds items to the action bar if it is present.</span>
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        <span class="s0">return true</span>;
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onOptionsItemSelected(MenuItem item) {
+        <span class="s3">// Handle action bar item clicks here. The action bar will</span>
+        <span class="s3">// automatically handle clicks on the Home/Up button, so long</span>
+        <span class="s3">// as you specify a parent activity in AndroidManifest.xml.</span>
+        <span class="s0">int </span>id = item.getItemId();
+
+        <span class="s3">//noinspection SimplifiableIfStatement</span>
+
+        <span class="s0">if </span>(id == R.id.home) {
+            startActivity(<span class="s0">new </span>Intent(disclaimer.<span class="s0">this</span>, MainActivity.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.important_link) {
+            startActivity(<span class="s0">new </span>Intent(disclaimer.<span class="s0">this</span>,imp_link.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.Syllabus) {
+            startActivity(<span class="s0">new </span>Intent(disclaimer.<span class="s0">this</span>,syllabus.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.feedback_Suggestion) {
+            url = <span class="s2">&quot;https://docs.google.com/forms/d/e/1FAIpQLSdH0e-9UScRXX7-VbkF4G-ZMOGSVOZdknnvDmw3256VsEQwTg/viewform?usp=sf_link&quot;</span>;
+            title = <span class="s2">&quot;Feedback &amp; Suggestions&quot;</span>;
+            Intent web = <span class="s0">new </span>Intent(disclaimer.<span class="s0">this</span>,WebViewActivity.<span class="s0">class</span>);
+            web.putExtra(<span class="s2">&quot;url&quot;</span>,url);
+            web.putExtra(<span class="s2">&quot;title&quot;</span>,title);
+            startActivity(web);
+        }
+        <span class="s0">if </span>(id == R.id.exit) {
+            <span class="s0">new </span>AlertDialog.Builder(<span class="s0">this</span>)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(<span class="s2">&quot;Closing Activity&quot;</span>)
+                    .setMessage(<span class="s2">&quot;Are you sure you want to close this activity ?&quot;</span>)
+                    .setPositiveButton(<span class="s2">&quot;Yes&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        <span class="s0">public void </span>onClick(DialogInterface dialog, <span class="s0">int </span>which) {
+                            finishAffinity();
+                        }
+
+                    })
+                    .setNegativeButton(<span class="s2">&quot;No&quot;</span>, <span class="s0">null</span>)
+                    .show();
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.contact_us) {
+            startActivity(<span class="s0">new </span>Intent(disclaimer.<span class="s0">this</span>,contact_us.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.legal) {
+            startActivity(<span class="s0">new </span>Intent(disclaimer.<span class="s0">this</span>,disclaimer.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">return super</span>.onOptionsItemSelected(item);
+    }
+}</pre>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<html>
+<head>
+<title>mcq.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+mcq.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.ttc.polytechnicshiksha;
+
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.Menu;
+<span class="s0">import </span>android.view.MenuItem;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.webkit.WebView;
+<span class="s0">import </span>android.widget.AdapterView;
+<span class="s0">import </span>android.widget.ArrayAdapter;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.Spinner;
+
+<span class="s0">import </span>androidx.appcompat.app.AlertDialog;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+
+<span class="s0">import </span>java.util.ArrayList;
+<span class="s0">import </span>java.util.List;
+
+<span class="s0">public class </span>mcq <span class="s0">extends </span>AppCompatActivity {
+    <span class="s0">public static </span>String url;
+    <span class="s0">public static </span>String title;
+    String item7;
+    String item8;
+    String item9;
+
+    List&lt;String&gt; categories3 = <span class="s0">new </span>ArrayList&lt;String&gt;();
+    List&lt;String&gt; branchlist3 = <span class="s0">new </span>ArrayList&lt;&gt;();
+
+    ArrayAdapter&lt;CharSequence&gt; adapter ;
+    ArrayAdapter&lt;String&gt; dataAdapter ;
+    ArrayAdapter&lt;String&gt; thirdAdapter ;
+    WebView webview_mcq;
+
+    <span class="s0">private </span>Button mcqBtn;
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mcq);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(<span class="s2">&quot;MCQs&quot;</span>);
+
+        mcqBtn = (Button) findViewById(R.id.mcqbtngo);
+        mcqBtn.setEnabled(<span class="s0">false</span>);
+        webview_mcq = (WebView) findViewById(R.id.webview_mcq);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_mcq_course);
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner_mcq_year);
+        Spinner spinner3 = (Spinner) findViewById(R.id.spinner_mcq_branch);
+
+        adapter = ArrayAdapter.createFromResource(<span class="s0">this</span>, R.array.labmanual_array, R.layout.simple_spinner_item11);
+        dataAdapter = <span class="s0">new </span>ArrayAdapter&lt;String&gt;(<span class="s0">this</span>, R.layout.simple_spinner_item11, categories3);
+        thirdAdapter = <span class="s0">new </span>ArrayAdapter&lt;String&gt;(<span class="s0">this</span>, R.layout.simple_spinner_item11, branchlist3);
+        spinner2.setEnabled(<span class="s0">false</span>);
+        spinner3.setEnabled(<span class="s0">false</span>);
+
+
+        spinner.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent, View view, <span class="s0">int </span>pos, <span class="s0">long </span>id) {
+
+                item7 = parent.getItemAtPosition(pos).toString();
+                <span class="s3">//Toast.makeText(parent.getContext(), &quot;Selected: &quot; + item7, Toast.LENGTH_LONG).show();</span>
+                <span class="s0">if </span>(item7.matches(<span class="s2">&quot;Engineering&quot;</span>))
+                {
+                    categories3.clear();
+                    spinner2.setEnabled(<span class="s0">true</span>);
+                    categories3.add(<span class="s2">&quot;Select Year&quot;</span>);
+
+                    categories3.add(<span class="s2">&quot;First Year&quot;</span>);
+                    <span class="s3">//categories3.add(&quot;Second Semester&quot;);</span>
+                    categories3.add(<span class="s2">&quot;Second Year&quot;</span>);
+                    categories3.add(<span class="s2">&quot;Third Year&quot;</span>);
+                }
+                <span class="s0">else if </span>(item7.matches(<span class="s2">&quot;Non-Engineering&quot;</span>)){
+                    <span class="s3">//Toast.makeText(this, item, Toast.LENGTH_LONG).show();</span>
+                    categories3.clear();
+                    <span class="s3">// categories.add(&quot;Select Type2&quot;);</span>
+
+                    categories3.add(<span class="s2">&quot;Select Year&quot;</span>);
+
+                    categories3.add(<span class="s2">&quot;First Year&quot;</span>);
+                    <span class="s3">//categories3.add(&quot;Second Semester&quot;);</span>
+                    categories3.add(<span class="s2">&quot;Second Year&quot;</span>);
+                    categories3.add(<span class="s2">&quot;Third Year&quot;</span>);
+
+                }
+                <span class="s0">else</span>
+                {
+                    <span class="s3">//categories.clear();</span>
+                    categories3.clear();
+                    categories3.add(<span class="s2">&quot;Select Year&quot;</span>);
+                    branchlist3.clear();
+                    branchlist3.add(<span class="s2">&quot;Select Branch&quot;</span>);
+
+                    spinner2.setEnabled(<span class="s0">false</span>);
+                    spinner3.setEnabled(<span class="s0">false</span>);
+
+                    dataAdapter.notifyDataSetChanged();
+                    thirdAdapter.notifyDataSetChanged();
+
+                    mcqBtn.setEnabled(<span class="s0">false</span>);
+                }
+
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parentView) {
+                <span class="s3">// your code here</span>
+            }
+
+        });
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
+        spinner.setAdapter(adapter);
+
+
+        categories3.add(<span class="s2">&quot;Select Year&quot;</span>);
+        spinner2.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parentView, View selectedItemView, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+
+                <span class="s3">// your code here</span>
+                item8 = parentView.getItemAtPosition(position).toString();
+                <span class="s3">//Toast.makeText(parentView.getContext(), &quot;Selected: &quot; + item8, Toast.LENGTH_LONG).show();</span>
+                <span class="s0">if </span>(item8.matches(<span class="s2">&quot;First Year&quot;</span>))
+                {
+                    spinner3.setVisibility(View.GONE);
+                    <span class="s3">//branchlist3.clear();</span>
+                    <span class="s3">//branchlist3.add(&quot;Click Go Button&quot;);</span>
+                    spinner3.setEnabled(<span class="s0">false</span>);
+                    mcqBtn.setEnabled(<span class="s0">true</span>);
+                    thirdAdapter.notifyDataSetChanged();
+                }
+
+                <span class="s0">else if </span>(item8.matches(<span class="s2">&quot;Second Year&quot;</span>))
+                {
+                    spinner3.setVisibility(View.VISIBLE);
+                    spinner3.setEnabled(<span class="s0">true</span>);
+                    branchlist3.clear();
+                    branchlist3.add(<span class="s2">&quot;Select Branch&quot;</span>);
+                    mcqBtn.setEnabled(<span class="s0">false</span>);
+                    thirdAdapter.notifyDataSetChanged();
+                    branchlist3.add(<span class="s2">&quot;CHEMICAL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;COMPUTER SCIENCE &amp; ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;INSTRUMENTATION ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL AUTOMOBILE ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL PRODUCTION ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL RAC ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;PLASTIC TECHNOLOGY&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;PRINTING TECHNOLOGY&quot;</span>);
+
+
+                }
+                <span class="s0">else if </span>(item8.matches(<span class="s2">&quot;Third Year&quot;</span>))
+                {
+                    spinner3.setVisibility(View.VISIBLE);
+                    spinner3.setEnabled(<span class="s0">true</span>);
+                    branchlist3.clear();
+                    branchlist3.add(<span class="s2">&quot;Select Branch&quot;</span>);
+                    mcqBtn.setEnabled(<span class="s0">false</span>);
+                    thirdAdapter.notifyDataSetChanged();
+                    branchlist3.add(<span class="s2">&quot;ARCHITECTURE ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;CHEMICAL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;COMPUTER SCIENCE &amp; ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;ELECTRONICS FIBER ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;INSTRUMENTATION ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL AUTOMOBILE ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL PRODUCTION ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;MECHANICAL RAC ENGINEERING&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;PLASTIC TECHNOLOGY&quot;</span>);
+                    branchlist3.add(<span class="s2">&quot;PRINTING TECHNOLOGY&quot;</span>);
+
+
+                }
+                <span class="s0">else</span>
+                {
+                    spinner3.setVisibility(View.VISIBLE);
+                    spinner3.setEnabled(<span class="s0">false</span>);
+                    branchlist3.clear();
+                    branchlist3.add(<span class="s2">&quot;Select Branch&quot;</span>);
+                    dataAdapter.notifyDataSetChanged();
+                    thirdAdapter.notifyDataSetChanged();
+                    mcqBtn.setEnabled(<span class="s0">false</span>);
+                }
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parentView) {
+                <span class="s3">// your code here</span>
+            }
+
+        });
+        dataAdapter.setDropDownViewResource(android.R.layout.select_dialog_item);
+        spinner2.setAdapter(dataAdapter);
+
+
+        branchlist3.add(<span class="s2">&quot;Select Branch&quot;</span>);
+        thirdAdapter.setDropDownViewResource(android.R.layout.select_dialog_item);
+        spinner3.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent3, View view, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+                item9 = parent3.getItemAtPosition(position).toString();
+                <span class="s3">//Toast.makeText(view.getContext(),&quot;Selected : &quot; +item9,Toast.LENGTH_LONG);</span>
+                <span class="s0">if</span>((branchlist3.contains(<span class="s2">&quot;&quot;</span>+item9)) &amp;&amp; !item9.matches(<span class="s2">&quot;Select Branch&quot;</span>))
+                {
+                    mcqBtn.setEnabled(<span class="s0">true</span>);
+                }
+                <span class="s0">else</span>
+                {
+
+                    thirdAdapter.notifyDataSetChanged();
+                    mcqBtn.setEnabled(<span class="s0">false</span>);
+                }
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+            }
+        });
+        spinner3.setAdapter(thirdAdapter);
+
+
+        mcqBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                <span class="s0">if </span>((item7.matches(<span class="s2">&quot;Engineering&quot;</span>)))
+                {
+                    <span class="s0">if </span>(item8.matches(<span class="s2">&quot;First Year&quot;</span>))
+                    {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/12ARtXUEWttwLXyPHSLlhLi5qr1I8Fsco&quot;</span>);
+                    }
+                    <span class="s0">else if </span>(item8.matches(<span class="s2">&quot;Second Year&quot;</span>))
+                    {
+                        <span class="s0">if </span>(item9.matches(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1WWF3Bb3NCkOolwhOGln3zQXTo-PCrI9M&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;CHEMICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1sN3TIN6mF3yzhh6giM6quS1VeOb7h6XD&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/170WRL3-7RP5GMh2srjHSUnOyZXz3F3qv&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;COMPUTER SCIENCE &amp; ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1NKS52G6jdMJnjkUVB-Z0rQ0hpGOt0REg&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1WejLsjhX61oa7GD7QGNvrUD2Sf9cRbFx&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1f6xkqLTbbdAJXM3jTsgK6TAZaTlyDWNB&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;INSTRUMENTATION ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1D2Ss46Vcjnb4u1Nq6fa_mAIkG2ZKgbrN&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL PRODUCTION ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/19OUY-ojo4zLX4EIs4OTIwqnoLKkza3s8&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL RAC ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1fYP7hQku_st-NNPexik7ealr9McIOAqx&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;PLASTIC TECHNOLOGY&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1Q0MvEBLKmqJVThYYYD6ZSpM9BKnbFbBz&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;PRINTING TECHNOLOGY&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1M4z-sMzO-aRNzd0wLtucQ5qc4wypYrxL&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL AUTOMOBILE ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1seOUMP5QNr1L7jslVfH38mlWoUXrlpre&quot;</span>);
+                        }
+
+                    }
+                    <span class="s0">else if </span>(item8.matches(<span class="s2">&quot;Third Year&quot;</span>))
+                    {
+                        <span class="s0">if </span>(item9.matches(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1-PDgYLqTwrsUBAvXDLmdWiMGsT-E4WDT&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;CHEMICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1FNvMMzzVByw2Yo-ApQNghD0DDtr2qphm&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1N4k87pr7n7V75BPS-s-h3lwrFMAIUSKv&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;COMPUTER SCIENCE &amp; ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1VApQnCY6viw_-9sGypJxZy6orN1ithi7&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1aioLwjFS0IFVmkm70E5DoXsE_b3Oc_6b&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1C6ZyVJ188yBFwVNoSG1wtQebBAT8CTDY&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;INSTRUMENTATION ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1-ATcFuB90jpwCbDxUXG6-8OJUKa7q2_a&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL PRODUCTION ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1CVAGsAlt8S4fAZ8fcnXpkE2X9nVlDv2b&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL RAC ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1MlLng5LyidPfXcHLXgB1k3rAzUrDCAv0&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;PLASTIC TECHNOLOGY&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1H4rWmtbEc1GmCXajcyXL1ErrROHFpx6e&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;PRINTING TECHNOLOGY&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1ESmSp0LneRQCrj6ubIl9fNcGdguoSI0W&quot;</span>);
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL AUTOMOBILE ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1YtEc3SGCI09X12FmgYH6-QB2H-YF51N9&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;ELECTRONICS FIBER ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1HLKRLbscdF64r6tbZov0_29OPodDCFgK&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;ARCHITECTURE ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_mcq.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1Oy2w5xDXur28OnZS9eyx_IaEDcWvF4R5&quot;</span>);
+                        }
+                    }
+                }
+                <span class="s0">else</span>
+                {
+                    startActivity(<span class="s0">new </span>Intent(mcq.<span class="s0">this</span>, workinprogress.<span class="s0">class</span>));
+                }
+            }
+        });
+
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onCreateOptionsMenu(Menu menu) {
+        <span class="s3">// Inflate the menu; this adds items to the action bar if it is present.</span>
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        <span class="s0">return true</span>;
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onOptionsItemSelected(MenuItem item) {
+        <span class="s3">// Handle action bar item clicks here. The action bar will</span>
+        <span class="s3">// automatically handle clicks on the Home/Up button, so long</span>
+        <span class="s3">// as you specify a parent activity in AndroidManifest.xml.</span>
+        <span class="s0">int </span>id = item.getItemId();
+
+        <span class="s3">//noinspection SimplifiableIfStatement</span>
+
+        <span class="s0">if </span>(id == R.id.home) {
+            startActivity(<span class="s0">new </span>Intent(mcq.<span class="s0">this</span>, MainActivity.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.important_link) {
+            startActivity(<span class="s0">new </span>Intent(mcq.<span class="s0">this</span>,imp_link.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.Syllabus) {
+            startActivity(<span class="s0">new </span>Intent(mcq.<span class="s0">this</span>,syllabus.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.feedback_Suggestion) {
+            url = <span class="s2">&quot;https://docs.google.com/forms/d/e/1FAIpQLSdH0e-9UScRXX7-VbkF4G-ZMOGSVOZdknnvDmw3256VsEQwTg/viewform?usp=sf_link&quot;</span>;
+            title = <span class="s2">&quot;Feedback &amp; Suggestions&quot;</span>;
+            Intent web = <span class="s0">new </span>Intent(mcq.<span class="s0">this</span>,WebViewActivity.<span class="s0">class</span>);
+            web.putExtra(<span class="s2">&quot;url&quot;</span>,url);
+            web.putExtra(<span class="s2">&quot;title&quot;</span>,title);
+            startActivity(web);
+        }
+        <span class="s0">if </span>(id == R.id.exit) {
+            <span class="s0">new </span>AlertDialog.Builder(<span class="s0">this</span>)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(<span class="s2">&quot;Closing Activity&quot;</span>)
+                    .setMessage(<span class="s2">&quot;Are you sure you want to close this activity?&quot;</span>)
+                    .setPositiveButton(<span class="s2">&quot;Yes&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        <span class="s0">public void </span>onClick(DialogInterface dialog, <span class="s0">int </span>which)
+                        {
+                            finishAffinity();
+                        }
+
+                    })
+                    .setNegativeButton(<span class="s2">&quot;No&quot;</span>, <span class="s0">null</span>)
+                    .show();
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.contact_us) {
+            startActivity(<span class="s0">new </span>Intent(mcq.<span class="s0">this</span>,contact_us.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.legal) {
+            startActivity(<span class="s0">new </span>Intent(mcq.<span class="s0">this</span>,disclaimer.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">return super</span>.onOptionsItemSelected(item);
+    }
+}</pre>
+</body>
+</html>

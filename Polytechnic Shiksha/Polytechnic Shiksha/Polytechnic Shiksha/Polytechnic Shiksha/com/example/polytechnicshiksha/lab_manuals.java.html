@@ -1,0 +1,333 @@
+<html>
+<head>
+<title>lab_manuals.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+lab_manuals.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.polytechnicshiksha;
+
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.Menu;
+<span class="s0">import </span>android.view.MenuItem;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.webkit.WebView;
+<span class="s0">import </span>android.widget.AdapterView;
+<span class="s0">import </span>android.widget.ArrayAdapter;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.Spinner;
+
+<span class="s0">import </span>androidx.appcompat.app.AlertDialog;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+
+<span class="s0">import </span>java.util.ArrayList;
+<span class="s0">import </span>java.util.List;
+
+<span class="s0">public class </span>lab_manuals <span class="s0">extends </span>AppCompatActivity {
+
+    String item4;
+    String item5;
+    String item6;
+
+    List&lt;String&gt; categories2 = <span class="s0">new </span>ArrayList&lt;String&gt;();
+    List&lt;String&gt; branchlist2 = <span class="s0">new </span>ArrayList&lt;&gt;();
+
+    ArrayAdapter&lt;String&gt; dataAdapter ;
+    ArrayAdapter&lt;String&gt; thirdAdapter ;
+
+    <span class="s0">private </span>Button mlabBtn;
+
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lab_manuals);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(<span class="s2">&quot;Lab Manuals&quot;</span>);
+
+        dataAdapter = <span class="s0">new </span>ArrayAdapter&lt;String&gt;(<span class="s0">this</span>, android.R.layout.simple_spinner_item, categories2);
+        thirdAdapter = <span class="s0">new </span>ArrayAdapter&lt;String&gt;(<span class="s0">this</span>, android.R.layout.simple_spinner_item, branchlist2);
+
+        mlabBtn = (Button) findViewById(R.id.labmbtngo);
+
+        WebView webview_Labmanual = (WebView) findViewById(R.id.webview_labm);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_labm_course);
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner_labm_year);
+        Spinner spinner3 = (Spinner) findViewById(R.id.spinner_labm_branch);
+
+        spinner2.setEnabled(<span class="s0">false</span>);
+        spinner3.setEnabled(<span class="s0">false</span>);
+
+        mlabBtn.setEnabled(<span class="s0">false</span>);
+
+        spinner.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent, View view, <span class="s0">int </span>pos, <span class="s0">long </span>id) {
+
+                item4 = parent.getItemAtPosition(pos).toString();
+                <span class="s3">//Toast.makeText(parent.getContext(), &quot;Selected: &quot; + item4, Toast.LENGTH_LONG).show();</span>
+                <span class="s0">if </span>(item4.matches(<span class="s2">&quot;Engineering&quot;</span>))
+                {
+                    categories2.clear();
+                    spinner2.setEnabled(<span class="s0">true</span>);
+                    categories2.add(<span class="s2">&quot;Select Semester&quot;</span>);
+                    categories2.add(<span class="s2">&quot;First Semester&quot;</span>);
+                    categories2.add(<span class="s2">&quot;Second Semester&quot;</span>);
+                    <span class="s3">//categories2.add(&quot;Second Year&quot;);</span>
+                    <span class="s3">//categories2.add(&quot;Third Year&quot;);</span>
+                }
+                <span class="s0">else</span>
+                {
+                    categories2.clear();
+                    categories2.add(<span class="s2">&quot;Select Semester&quot;</span>);
+
+                    branchlist2.clear();
+                    branchlist2.add(<span class="s2">&quot;Select Subject&quot;</span>);
+
+                    spinner2.setEnabled(<span class="s0">false</span>);
+                    spinner3.setEnabled(<span class="s0">false</span>);
+
+                    dataAdapter.notifyDataSetChanged();
+                    thirdAdapter.notifyDataSetChanged();
+
+                    mlabBtn.setEnabled(<span class="s0">false</span>);
+                }
+
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parentView) {
+                <span class="s3">// your code here</span>
+            }
+
+        });
+
+
+
+        ArrayAdapter&lt;CharSequence&gt; adapter = ArrayAdapter.createFromResource(<span class="s0">this</span>, R.array.labmanual_array, android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
+        <span class="s3">//spinner.setPrompt(&quot;Select E-Lecture for...&quot;);</span>
+        spinner.setAdapter(adapter);
+
+        categories2.add(<span class="s2">&quot;Select Semester&quot;</span>);
+
+        spinner2.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parentView, View selectedItemView, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+
+                <span class="s3">// your code here</span>
+                item5 = parentView.getItemAtPosition(position).toString();
+                <span class="s3">//Toast.makeText(parentView.getContext(), &quot;Selected: &quot; + item5, Toast.LENGTH_LONG).show();</span>
+                <span class="s0">if </span>(item5.matches(<span class="s2">&quot;First Semester&quot;</span>))
+                {
+                    branchlist2.clear();
+                    branchlist2.add(<span class="s2">&quot;Select Subject&quot;</span>);
+                    spinner3.setEnabled(<span class="s0">true</span>);
+                    thirdAdapter.notifyDataSetChanged();
+                    mlabBtn.setEnabled(<span class="s0">false</span>);
+                    branchlist2.add(<span class="s2">&quot;ENGINEERING GRAPHICS&quot;</span>);
+                    branchlist2.add(<span class="s2">&quot;ENGINEERING WORKSHOP&quot;</span>);
+                    branchlist2.add(<span class="s2">&quot;APPLIED PHYSICS-I&quot;</span>);
+                    branchlist2.add(<span class="s2">&quot;APPLIED CHEMISTRY&quot;</span>);
+                    branchlist2.add(<span class="s2">&quot;ENGLISH&quot;</span>);
+                }
+                <span class="s0">else if </span>(item5.matches(<span class="s2">&quot;Second Semester&quot;</span>)){
+
+                    branchlist2.clear();
+                    branchlist2.add(<span class="s2">&quot;Select Subject&quot;</span>);
+                    spinner3.setEnabled(<span class="s0">true</span>);
+                    thirdAdapter.notifyDataSetChanged();
+                    mlabBtn.setEnabled(<span class="s0">false</span>);
+                    branchlist2.add(<span class="s2">&quot;APPLIED PHYSICS-II&quot;</span>);
+                    branchlist2.add(<span class="s2">&quot;IT SYSTEMS&quot;</span>);
+                    branchlist2.add(<span class="s2">&quot;ELECTRICAL AND ELECTRONICS ENGINEERING&quot;</span>);
+
+                }
+
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parentView) {
+                <span class="s3">// your code here</span>
+            }
+
+        });
+
+
+        <span class="s3">// Drop down layout style - list view with radio button</span>
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        <span class="s3">//  spinner2.setOnItemSelectedListener(this);</span>
+        <span class="s3">// attaching data adapter to spinner</span>
+        spinner2.setAdapter(dataAdapter);
+
+        branchlist2.add(<span class="s2">&quot;Select Subject&quot;</span>);
+
+        <span class="s3">// Drop down layout style - list view with radio button</span>
+        thirdAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        <span class="s3">//  spinner2.setOnItemSelectedListener(this);</span>
+        <span class="s3">// attaching data adapter to spinner</span>
+
+        spinner3.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent3, View view, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+                item6 = parent3.getItemAtPosition(position).toString();
+                <span class="s3">//Toast.makeText(view.getContext(),&quot;Selected : &quot; +item6,Toast.LENGTH_LONG);</span>
+                <span class="s0">if</span>((branchlist2.contains(<span class="s2">&quot;&quot; </span>+item6)) &amp;&amp; !item6.matches(<span class="s2">&quot;Select Subject&quot;</span>))
+                {
+                    mlabBtn.setEnabled(<span class="s0">true</span>);
+                }
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+            }
+        });
+        spinner3.setAdapter(thirdAdapter);
+
+
+
+        mlabBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                <span class="s0">if </span>((item4.matches(<span class="s2">&quot;Engineering&quot;</span>)))
+                {
+                    <span class="s0">if </span>(item5.matches(<span class="s2">&quot;First Semester&quot;</span>))
+                    {
+                        <span class="s0">if </span>(item6.matches(<span class="s2">&quot;ENGINEERING GRAPHICS&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1_Sj96qluIJBJd2z6Bz9IQhTC_ZRDPpvM&quot;</span>);
+
+                        }
+                        <span class="s0">else if </span>(item6.matches(<span class="s2">&quot;ENGINEERING WORKSHOP&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1MHMc66wxCJpAKG3a0__9PIGQqDJWWxcj&quot;</span>);
+
+                        }
+                        <span class="s0">else if </span>(item6.matches(<span class="s2">&quot;APPLIED PHYSICS-I&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1mgsn2bDrxvxBJattGjUy7T-SRlUiaC-o&quot;</span>);
+
+                        }
+                        <span class="s0">else if </span>(item6.matches(<span class="s2">&quot;APPLIED CHEMISTRY&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1Bxz5ixXHgPwX2JCuoEnbiUM0io2Ezxbx&quot;</span>);
+
+                        }
+                        <span class="s0">else if </span>(item6.matches(<span class="s2">&quot;ENGLISH&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/18ulYblsgTUumubSdCqT0vR7yQ5c2zSBj&quot;</span>);
+
+                        }
+                    }
+                    <span class="s0">else if </span>(item5.matches(<span class="s2">&quot;Second Semester&quot;</span>))
+                    {
+                        <span class="s0">if </span>(item6.matches(<span class="s2">&quot;APPLIED PHYSICS-II&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/11cBsRRw2VfsDvb9Dq9t7u57PiCF3AYQU&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item6.matches(<span class="s2">&quot;IT SYSTEMS&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1dulXNlZUW-WyIjeox39j33s7HlttwChP&quot;</span>);
+                        }
+                        <span class="s0">else if </span>(item6.matches(<span class="s2">&quot;ELECTRICAL AND ELECTRONICS ENGINEERING&quot;</span>))
+                        {
+                            <span class="s3">//webview_Labmanual.setWebViewClient(new WebViewClient());</span>
+                            <span class="s3">//mlabBtn.setVisibility(View.INVISIBLE);</span>
+                            webview_Labmanual.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1p4yndRU8bFY1_wCiaFWX6LmPvAbS0Q4R&quot;</span>);
+                        }
+                    }
+                }
+                <span class="s0">else</span>
+                {
+                    startActivity(<span class="s0">new </span>Intent(lab_manuals.<span class="s0">this</span>, workinprogress.<span class="s0">class</span>));
+                }
+            }
+        });
+
+
+
+
+
+
+    }
+    @Override
+    <span class="s0">public boolean </span>onCreateOptionsMenu(Menu menu) {
+        <span class="s3">// Inflate the menu; this adds items to the action bar if it is present.</span>
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        <span class="s0">return true</span>;
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onOptionsItemSelected(MenuItem item) {
+        <span class="s3">// Handle action bar item clicks here. The action bar will</span>
+        <span class="s3">// automatically handle clicks on the Home/Up button, so long</span>
+        <span class="s3">// as you specify a parent activity in AndroidManifest.xml.</span>
+        <span class="s0">int </span>id = item.getItemId();
+
+        <span class="s3">//noinspection SimplifiableIfStatement</span>
+
+        <span class="s0">if </span>(id == R.id.home) {
+            startActivity(<span class="s0">new </span>Intent(lab_manuals.<span class="s0">this</span>, MainActivity.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.important_link) {
+            startActivity(<span class="s0">new </span>Intent(lab_manuals.<span class="s0">this</span>,imp_link.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.Syllabus) {
+            startActivity(<span class="s0">new </span>Intent(lab_manuals.<span class="s0">this</span>,syllabus.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.exit) {
+            <span class="s0">new </span>AlertDialog.Builder(<span class="s0">this</span>)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(<span class="s2">&quot;Closing Activity&quot;</span>)
+                    .setMessage(<span class="s2">&quot;Are you sure you want to close this activity?&quot;</span>)
+                    .setPositiveButton(<span class="s2">&quot;Yes&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        <span class="s0">public void </span>onClick(DialogInterface dialog, <span class="s0">int </span>which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton(<span class="s2">&quot;No&quot;</span>, <span class="s0">null</span>)
+                    .show();
+            <span class="s0">return true</span>;
+        }
+
+        <span class="s0">return super</span>.onOptionsItemSelected(item);
+    }
+}</pre>
+</body>
+</html>

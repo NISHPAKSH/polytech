@@ -1,0 +1,2 @@
+include ':Polytechnic Shiksha'
+rootProject.name = "Polytechnic Shiksha"

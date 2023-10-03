@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="Theme.PolytechnicELearning.NoActionBar1">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="Theme.PolytechnicELearning.AppBarOverlay1" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.PolytechnicELearning.PopupOverlay1" parent="ThemeOverlay.AppCompat.DayNight" />
+</resources>

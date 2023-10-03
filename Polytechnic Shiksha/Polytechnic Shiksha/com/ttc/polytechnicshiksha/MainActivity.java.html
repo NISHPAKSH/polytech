@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #0000ff;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.ttc.polytechnicshiksha;
+
+<span class="s0">import </span>android.annotation.SuppressLint;
+<span class="s0">import </span>android.app.UiModeManager;
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.content.SharedPreferences;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.text.method.LinkMovementMethod;
+<span class="s0">import </span>android.view.DragEvent;
+<span class="s0">import </span>android.view.Menu;
+<span class="s0">import </span>android.view.MenuItem;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.CompoundButton;
+<span class="s0">import </span>android.widget.ImageView;
+<span class="s0">import </span>android.widget.Switch;
+<span class="s0">import </span>android.widget.TextView;
+<span class="s0">import </span>android.widget.Toast;
+<span class="s0">import </span>android.widget.ToggleButton;
+
+<span class="s0">import </span>androidx.appcompat.app.AlertDialog;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatDelegate;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+<span class="s0">import </span>androidx.core.app.ActivityCompat;
+
+<span class="s0">import static </span>android.graphics.Color.GREEN;
+
+
+<span class="s0">public class </span>MainActivity <span class="s0">extends </span>AppCompatActivity {
+    <span class="s0">public static </span>String url;
+    <span class="s0">public static </span>String title;
+    <span class="s0">private </span>Button mElectBtn;
+    <span class="s0">private </span>Button mLabBtn;
+    <span class="s0">private </span>Button mMcqBtn;
+    <span class="s0">private </span>Button mSolBtn;
+    <span class="s0">private </span>Button mEnotesBtn;
+    <span class="s0">private </span>Button loginButton;
+    <span class="s0">private </span>TextView text_login;
+
+    @SuppressLint(<span class="s2">&quot;ResourceAsColor&quot;</span>)
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mElectBtn = (Button) findViewById(R.id.electBtn);
+        mLabBtn = (Button) findViewById(R.id.labBtn);
+        mMcqBtn = (Button) findViewById(R.id.mcqBtn);
+        mSolBtn = (Button) findViewById(R.id.solBtn);
+        mEnotesBtn = (Button) findViewById(R.id.enoteBtn);
+        loginButton = (Button) findViewById(R.id.login_button);
+        text_login = (TextView) findViewById(R.id.clickable_login);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(<span class="s2">&quot;Polytechnic Shiksha&quot;</span>);
+        checkDownloadPermission();
+
+        text_login.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>,login.<span class="s0">class</span>));
+            }
+        });
+
+        mLabBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+
+                startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>, lab_manuals.<span class="s0">class</span>));
+            }
+        });
+
+        mElectBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+
+                startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>, electure.<span class="s0">class</span>));
+            }
+        });
+
+        mMcqBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+
+                startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>, mcq.<span class="s0">class</span>));
+            }
+        });
+
+        mEnotesBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+
+                startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>, workinprogress.<span class="s0">class</span>));
+            }
+        });
+
+        mSolBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+
+                startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>, qpsolution.<span class="s0">class</span>));
+            }
+        });
+    }
+
+
+    <span class="s0">private void </span>checkDownloadPermission() {
+        <span class="s0">if </span>(ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.<span class="s0">this</span>, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(MainActivity.<span class="s0">this</span>, <span class="s2">&quot;Write External Storage permission allows us to save files. Please allow this permission in App Settings.&quot;</span>, Toast.LENGTH_LONG).show();
+        } <span class="s0">else </span>{
+            ActivityCompat.requestPermissions(MainActivity.<span class="s0">this</span>, <span class="s0">new </span>String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, <span class="s3">100</span>);
+        }
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onCreateOptionsMenu(Menu menu) {
+        <span class="s4">// Inflate the menu; this adds items to the action bar if it is present.</span>
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        <span class="s0">return true</span>;
+
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onOptionsItemSelected(MenuItem item) {
+        <span class="s4">// Handle action bar item clicks here. The action bar will</span>
+        <span class="s4">// automatically handle clicks on the Home/Up button, so long</span>
+        <span class="s4">// as you specify a parent activity in AndroidManifest.xml.</span>
+        <span class="s0">int </span>id = item.getItemId();
+
+        <span class="s4">//noinspection SimplifiableIfStatement</span>
+        <span class="s0">if </span>(id == R.id.home) {
+            <span class="s4">//startActivity(new Intent(MainActivity.this, MainActivity.class));</span>
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.important_link) {
+            startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>,imp_link.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.Syllabus) {
+            startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>,syllabus.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.feedback_Suggestion) {
+            url = <span class="s2">&quot;https://docs.google.com/forms/d/e/1FAIpQLSdH0e-9UScRXX7-VbkF4G-ZMOGSVOZdknnvDmw3256VsEQwTg/viewform?usp=sf_link&quot;</span>;
+            title = <span class="s2">&quot;Feedback &amp; Suggestions&quot;</span>;
+            Intent web = <span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>,WebViewActivity.<span class="s0">class</span>);
+            web.putExtra(<span class="s2">&quot;url&quot;</span>,url);
+            web.putExtra(<span class="s2">&quot;title&quot;</span>,title);
+            startActivity(web);
+        }
+        <span class="s0">if </span>(id == R.id.exit) {
+            <span class="s0">new </span>AlertDialog.Builder(<span class="s0">this</span>)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(<span class="s2">&quot;Closing Activity&quot;</span>)
+                    .setMessage(<span class="s2">&quot;Are you sure you want to close this activity?&quot;</span>)
+                    .setPositiveButton(<span class="s2">&quot;Yes&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        <span class="s0">public void </span>onClick(DialogInterface dialog, <span class="s0">int </span>which) {
+                            finishAffinity();
+                        }
+
+                    })
+                    .setNegativeButton(<span class="s2">&quot;No&quot;</span>, <span class="s0">null</span>)
+                    .show();
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.contact_us) {
+            startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>,contact_us.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.legal) {
+            startActivity(<span class="s0">new </span>Intent(MainActivity.<span class="s0">this</span>,disclaimer.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">return super</span>.onOptionsItemSelected(item);
+    }
+
+}</pre>
+</body>
+</html>

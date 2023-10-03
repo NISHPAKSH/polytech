@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>WebViewActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+WebViewActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.ttc.polytechnicshiksha;
+
+<span class="s0">import </span>android.annotation.SuppressLint;
+<span class="s0">import </span>android.app.AlertDialog;
+<span class="s0">import </span>android.app.DownloadManager;
+<span class="s0">import </span>android.content.BroadcastReceiver;
+<span class="s0">import </span>android.content.Context;
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.content.IntentFilter;
+<span class="s0">import </span>android.graphics.Bitmap;
+<span class="s0">import </span>android.net.Uri;
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+
+<span class="s0">import </span>android.os.Environment;
+<span class="s0">import </span>android.webkit.DownloadListener;
+<span class="s0">import </span>android.webkit.URLUtil;
+<span class="s0">import </span>android.webkit.WebResourceRequest;
+<span class="s0">import </span>android.webkit.WebSettings;
+<span class="s0">import </span>android.webkit.WebView;
+<span class="s0">import </span>android.webkit.WebViewClient;
+<span class="s0">import </span>android.widget.ProgressBar;
+<span class="s0">import </span>android.widget.Toast;
+
+<span class="s0">public class </span>WebViewActivity <span class="s0">extends </span>AppCompatActivity {
+    <span class="s0">private </span>WebView wv;
+    <span class="s0">private </span>ProgressBar progressbar;
+
+    <span class="s0">public static </span>String url;
+    <span class="s0">public static </span>String title;
+
+    @SuppressLint(<span class="s2">&quot;SetJavaScriptEnabled&quot;</span>)
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_web_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        progressbar = (ProgressBar) findViewById(R.id.p2);
+            wv = (WebView) findViewById(R.id.webview_feedback);
+
+            wv.getSettings().setJavaScriptEnabled(<span class="s0">true</span>);
+            wv.getSettings().setJavaScriptCanOpenWindowsAutomatically(<span class="s0">true</span>);
+            wv.getSettings().setBuiltInZoomControls(<span class="s0">true</span>);
+            wv.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+            wv.getSettings().setDomStorageEnabled(<span class="s0">true</span>);
+            wv.getSettings().setUseWideViewPort(<span class="s0">true</span>);
+            wv.getSettings().setLoadWithOverviewMode(<span class="s0">true</span>);
+            wv.clearCache(<span class="s0">true</span>);
+            wv.clearHistory();
+            wv.setWebViewClient(<span class="s0">new </span>Client());
+
+
+
+            <span class="s0">final </span>AppCompatActivity activity = <span class="s0">this</span>;
+            Intent intent = getIntent();
+            url = intent.getStringExtra(<span class="s2">&quot;url&quot;</span>);
+            title = intent.getStringExtra(<span class="s2">&quot;title&quot;</span>);
+            setTitle(title);
+
+            wv.loadUrl(url);
+            wv.setDownloadListener(<span class="s0">new </span>DownloadListener() {
+                @Override
+                <span class="s0">public void </span>onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, <span class="s0">long </span>contentLength) {
+                    DownloadManager.Request request = <span class="s0">new </span>DownloadManager.Request(Uri.parse(url));
+                    request.setTitle(URLUtil.guessFileName(url,contentDisposition,mimetype));
+                    request.setDescription(<span class="s2">&quot;Downloading file...&quot;</span>);
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,URLUtil.guessFileName(url, contentDisposition, mimetype));
+                    DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                    dm.enqueue(request);
+                    Toast.makeText(getApplicationContext(),<span class="s2">&quot;Downloading...&quot;</span>,Toast.LENGTH_SHORT).show();
+                    registerReceiver(onComplete,<span class="s0">new </span>IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+                }
+                BroadcastReceiver onComplete = <span class="s0">new </span>BroadcastReceiver() {
+                    @Override
+                    <span class="s0">public void </span>onReceive(Context context, Intent intent) {
+                        Toast.makeText(getApplicationContext(),<span class="s2">&quot;Downloading Complete&quot;</span>,Toast.LENGTH_SHORT).show();
+                    }
+                };
+            });
+
+
+    }
+
+    <span class="s0">private class </span>Client <span class="s0">extends </span>WebViewClient {
+        @Override
+        <span class="s0">public void </span>onPageStarted(WebView view, String url, Bitmap favicon) {
+            <span class="s0">super</span>.onPageStarted(view, url, favicon);
+        }
+
+        @Override
+        <span class="s0">public boolean </span>shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            <span class="s0">return true</span>;
+        }
+
+        @Override
+        <span class="s0">public void </span>onPageFinished(WebView view, String url) {
+            <span class="s0">super</span>.onPageFinished(view, url);
+            progressbar = (ProgressBar) findViewById(R.id.p2);
+            progressbar.setVisibility(view.GONE);
+        }
+
+        <span class="s0">public void </span>onReceivedError(WebView webView, <span class="s0">int </span>errorCode, String description, String failingUrl) {
+            <span class="s0">try </span>{
+                webView.stopLoading();
+            } <span class="s0">catch </span>(Exception e) {
+            }
+
+            <span class="s0">if </span>(webView.canGoBack()) {
+                webView.goBack();
+            }
+
+            webView.loadUrl(<span class="s2">&quot;about:blank&quot;</span>);
+            AlertDialog alertDialog = <span class="s0">new </span>AlertDialog.Builder(WebViewActivity.<span class="s0">this</span>).create();
+            alertDialog.setTitle(<span class="s2">&quot;Error&quot;</span>);
+            alertDialog.setMessage(<span class="s2">&quot;Check your internet connection and try again.&quot;</span>);
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, <span class="s2">&quot;Try Again&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener() {
+                <span class="s0">public void </span>onClick(DialogInterface dialog, <span class="s0">int </span>which) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+
+            alertDialog.show();
+            <span class="s0">super</span>.onReceivedError(webView, errorCode, description, failingUrl);
+        }
+
+    }
+}</pre>
+</body>
+</html>

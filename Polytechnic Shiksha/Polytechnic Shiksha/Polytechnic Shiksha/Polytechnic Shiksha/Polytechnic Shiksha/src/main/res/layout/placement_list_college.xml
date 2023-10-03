@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="#CED4F1"
+    android:orientation="vertical"
+    android:layout_weight="1"
+
+    android:clickable="true"
+
+    android:foreground="?android:attr/selectableItemBackground"
+
+    app:cardCornerRadius="4dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="8dp"
+    app:cardUseCompatPadding="true"
+    >
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tvcollegename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/video_thumbnail_image_view"
+            android:layout_toRightOf="@+id/video_thumbnail_image_view"
+            android:paddingBottom="10dp"
+            android:text="Spiderman"
+            android:textAlignment="center"
+            android:textSize="23dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvcompanyname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvcollegename"
+            android:layout_toEndOf="@+id/video_thumbnail_image_view"
+            android:layout_toRightOf="@+id/video_thumbnail_image_view"
+            android:paddingTop="10dp"
+            android:text="Spiderman"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvcompanyaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvcompanyname"
+            android:layout_toEndOf="@+id/video_thumbnail_image_view"
+            android:layout_toRightOf="@+id/video_thumbnail_image_view"
+            android:paddingTop="10dp"
+            android:text="Spiderman"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvcompanyaddress"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="DELETE" />
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

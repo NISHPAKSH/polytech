@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>Splash.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #808080; font-weight: bold; font-style: italic;}
+.s4 { color: #0000ff;}
+.s5 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Splash.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.polytechnicshiksha;
+
+<span class="s0">import </span>android.annotation.SuppressLint;
+<span class="s0">import </span>android.content.Intent;
+
+<span class="s0">import </span>androidx.appcompat.app.ActionBar;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.os.Handler;
+<span class="s0">import </span>android.view.MotionEvent;
+<span class="s0">import </span>android.view.View;
+<span class="s2">/* 
+import com.google.android.gms.tasks.OnCompleteListener; 
+import com.google.android.gms.tasks.Task; 
+import com.google.firebase.iid.FirebaseInstanceId; 
+//import com.google.firebase.iid.FirebaseInstanceIdService; 
+import com.google.firebase.messaging.FirebaseMessaging; 
+import java.util.ArrayList; 
+import java.util.Arrays; 
+import java.util.List; 
+ 
+ */</span>
+<span class="s2">/**</span>
+ <span class="s2">* An example full-screen activity that shows and hides the system UI (i.e.</span>
+ <span class="s2">* status bar and navigation/system bar) with user interaction.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span>Splash <span class="s0">extends </span>AppCompatActivity {
+    <span class="s2">/**</span>
+     <span class="s2">* Whether or not the system UI should be auto-hidden after</span>
+     <span class="s2">* {</span><span class="s3">@link </span><span class="s2">#AUTO_HIDE_DELAY_MILLIS} milliseconds.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private static final boolean </span>AUTO_HIDE = <span class="s0">true</span>;
+
+    <span class="s2">/**</span>
+     <span class="s2">* If {</span><span class="s3">@link </span><span class="s2">#AUTO_HIDE} is set, the number of milliseconds to wait after</span>
+     <span class="s2">* user interaction before hiding the system UI.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private static final int </span>AUTO_HIDE_DELAY_MILLIS = <span class="s4">1000</span>;
+
+    <span class="s2">/**</span>
+     <span class="s2">* Some older devices needs a small delay between UI widget updates</span>
+     <span class="s2">* and a change of the status and navigation bar.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private static final int </span>UI_ANIMATION_DELAY = <span class="s4">300</span>;
+    <span class="s0">private final </span>Handler mHideHandler = <span class="s0">new </span>Handler();
+    <span class="s0">private </span>View mContentView;
+    <span class="s0">private final </span>Runnable mHidePart2Runnable = <span class="s0">new </span>Runnable() {
+        @SuppressLint(<span class="s5">&quot;InlinedApi&quot;</span>)
+        @Override
+        <span class="s0">public void </span>run() {
+            <span class="s2">// Delayed removal of status and navigation bar</span>
+
+            <span class="s2">// Note that some of these constants are new as of API 16 (Jelly Bean)</span>
+            <span class="s2">// and API 19 (KitKat). It is safe to use them, as they are inlined</span>
+            <span class="s2">// at compile-time and do nothing on earlier devices.</span>
+        <span class="s2">/*    mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE 
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN 
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE 
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY 
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION 
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); 
+ 
+         */</span>
+        }
+    };
+    <span class="s0">private </span>View mControlsView;
+    <span class="s0">private final </span>Runnable mShowPart2Runnable = <span class="s0">new </span>Runnable() {
+        @Override
+        <span class="s0">public void </span>run() {
+            <span class="s2">// Delayed display of UI elements</span>
+            ActionBar actionBar = getSupportActionBar();
+            <span class="s0">if </span>(actionBar != <span class="s0">null</span>) {
+                actionBar.show();
+            }
+            mControlsView.setVisibility(View.VISIBLE);
+        }
+    };
+    <span class="s0">private boolean </span>mVisible;
+    <span class="s0">private final </span>Runnable mHideRunnable = <span class="s0">new </span>Runnable() {
+        @Override
+        <span class="s0">public void </span>run() {
+            hide();
+        }
+
+    };
+   <span class="s2">/* Intent i = new Intent(this, LoginActivity.class); 
+    private final Runnable mHideRunnable1 = new Runnable() { 
+        @Override 
+ 
+        public void run() { 
+ 
+            startActivity(i); 
+        } 
+    };*/</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Touch listener to use for in-layout UI controls to delay hiding the</span>
+     <span class="s2">* system UI. This is to prevent the jarring behavior of controls going away</span>
+     <span class="s2">* while interacting with activity UI.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private final </span>View.OnTouchListener mDelayHideTouchListener = <span class="s0">new </span>View.OnTouchListener() {
+        @Override
+        <span class="s0">public boolean </span>onTouch(View view, MotionEvent motionEvent) {
+            <span class="s0">if </span>(AUTO_HIDE) {
+                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+            }
+            <span class="s0">return false</span>;
+        }
+    };
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_splash);
+        <span class="s0">new </span>Handler().postDelayed (<span class="s0">new </span>Runnable() {
+            @Override
+            <span class="s0">public void </span>run() {
+                Intent i = <span class="s0">new </span>Intent (Splash.<span class="s0">this</span>, MainActivity.<span class="s0">class</span>);
+                startActivity(i);
+
+                finish ();
+            }
+        }, <span class="s4">2000</span>);
+
+
+      <span class="s2">//  mControlsView = findViewById(R.id.fullscreen_content_controls);</span>
+      <span class="s2">//  mContentView = findViewById(R.id.fullscreen_content);</span>
+
+
+        <span class="s2">// Set up the user interaction to manually show or hide the system UI.</span>
+<span class="s2">/*        mContentView.setOnClickListener(new View.OnClickListener() { 
+            @Override 
+            public void onClick(View view) { 
+                toggle(); 
+            } 
+        }); 
+ 
+ */</span>
+
+
+
+
+
+
+        <span class="s2">// Upon interacting with UI controls, delay any scheduled hide()</span>
+        <span class="s2">// operations to prevent the jarring behavior of controls going away</span>
+        <span class="s2">// while interacting with the UI.</span>
+        <span class="s2">// findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);</span>
+    }
+
+    @Override
+    <span class="s0">protected void </span>onPostCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onPostCreate(savedInstanceState);
+
+        <span class="s2">// Trigger the initial hide() shortly after the activity has been</span>
+        <span class="s2">// created, to briefly hint to the user that UI controls</span>
+        <span class="s2">// are available.</span>
+        delayedHide(<span class="s4">50</span>);
+    }
+
+    <span class="s0">private void </span>toggle() {
+        <span class="s0">if </span>(mVisible) {
+            hide();
+        } <span class="s0">else </span>{
+            show();
+        }
+    }
+
+    <span class="s0">private void </span>hide() {
+        <span class="s2">// Hide UI first</span>
+        ActionBar actionBar = getSupportActionBar();
+        <span class="s0">if </span>(actionBar != <span class="s0">null</span>) {
+            actionBar.hide();
+        }
+<span class="s2">//        mControlsView.setVisibility(View.GONE);</span>
+        mVisible = <span class="s0">false</span>;
+
+        <span class="s2">// Schedule a runnable to remove the status and navigation bar after a delay</span>
+        mHideHandler.removeCallbacks(mShowPart2Runnable);
+        mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
+    }
+
+    @SuppressLint(<span class="s5">&quot;InlinedApi&quot;</span>)
+    <span class="s0">private void </span>show() {
+        <span class="s2">// Show the system bar</span>
+        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        mVisible = <span class="s0">true</span>;
+
+        <span class="s2">// Schedule a runnable to display UI elements after a delay</span>
+        mHideHandler.removeCallbacks(mHidePart2Runnable);
+        mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
+    }
+
+    <span class="s2">/**</span>
+     <span class="s2">* Schedules a call to hide() in delay milliseconds, canceling any</span>
+     <span class="s2">* previously scheduled calls.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private void </span>delayedHide(<span class="s0">int </span>delayMillis) {
+        mHideHandler.removeCallbacks(mHideRunnable);
+        mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+}
+</pre>
+</body>
+</html>

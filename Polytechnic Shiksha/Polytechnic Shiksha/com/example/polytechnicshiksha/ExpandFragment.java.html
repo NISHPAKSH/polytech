@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>ExpandFragment.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #0000ff;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ExpandFragment.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.polytechnicshiksha;
+
+<span class="s0">import </span>android.app.Fragment;
+<span class="s0">import </span>android.app.FragmentTransaction;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>androidx.annotation.Nullable;
+<span class="s0">import </span>android.util.Log;
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.Toast;
+
+<span class="s0">import </span>com.google.android.youtube.player.YouTubeInitializationResult;
+<span class="s0">import </span>com.google.android.youtube.player.YouTubePlayer;
+<span class="s0">import </span>com.google.android.youtube.player.YouTubePlayerFragment;
+<span class="s0">import </span>com.google.android.youtube.player.YouTubePlayerView;
+
+<span class="s0">public class </span>ExpandFragment <span class="s0">extends </span>Fragment <span class="s0">implements </span>YouTubePlayer.OnInitializedListener  {
+
+    YouTubePlayerView youTubePlayerView;
+    String API_KEY=<span class="s2">&quot;AIzaSyCG25IwSEZcJuF5Te7kko9XawkHaEJ48Ws&quot;</span>;
+    <span class="s0">private static final int </span>RECOVERY_REQUEST = <span class="s3">1</span>;
+    String TAG=<span class="s2">&quot;VideoActivity&quot;</span>;
+
+    <span class="s0">public </span>View onCreateView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
+        View view = layoutInflater.inflate(R.layout.fragment_expand, viewGroup, <span class="s0">false</span>);
+       <span class="s4">// YouTubePlayerSupportFragment youTubePlayerFragment = (YouTubePlayerSupportFragment) getActivity().getSupportFragmentManager()</span>
+          <span class="s4">//      .findFragmentById(R.id.youtube_fragment);</span>
+        YouTubePlayerFragment youTubePlayerFragment = YouTubePlayerFragment.newInstance();
+
+
+      <span class="s4">//  youTubePlayerView=(YouTubePlayerView)view.findViewById(R.id.youtubeview);</span>
+        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, <span class="s0">this</span>);
+
+
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_fragment, youTubePlayerFragment).commit();
+        <span class="s4">//   LinearLayout root = view.findViewById(R.id.picker_launcher_buttons_layout);</span>
+        <span class="s0">return </span>view;
+
+
+      <span class="s4">//  YouTubePlayerSupportFragment youTubePlayerFragment = (YouTubePlayerSupportFragment) getActivity().getFragmentManager().findById(R.id.youtube_view);</span>
+     <span class="s4">//   youTubePlayerFragment.initialize(API_KEY,this);</span>
+
+        <span class="s4">//return view;</span>
+    }
+
+    @Override
+    <span class="s0">public void </span>onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, <span class="s0">boolean </span>b) {
+        <span class="s4">//Bundle bundle = getActivity().getIntent().getExtras();</span>
+        Bundle bundle1 =getArguments();
+      String showVideo = bundle1.getString(<span class="s2">&quot;videoId&quot;</span>);
+        Log.e(TAG,<span class="s2">&quot;Video&quot; </span>+showVideo);
+        <span class="s4">// showVideo.</span>
+<span class="s4">/* 
+        String v1=&quot;/&quot;; 
+        String[] arrOfStr=showVideo.split(v1,5); 
+        String a1=arrOfStr[3]; 
+ 
+ */</span>
+
+        String v1=<span class="s2">&quot;/&quot;</span>;
+        String  a1=<span class="s2">&quot;&quot;</span>;
+
+        String[] arrOfStr=showVideo.split(v1,<span class="s3">5</span>);
+        <span class="s0">if</span>(arrOfStr.length&gt;=<span class="s3">3</span>) {
+          a1  = arrOfStr[<span class="s3">3</span>];
+        }
+        <span class="s0">if</span>(a1.startsWith(<span class="s2">&quot;watch&quot;</span>))
+        {
+            String v11=<span class="s2">&quot;=&quot;</span>;
+            String a11=<span class="s2">&quot;&amp;&quot;</span>;
+            String[] arrOfStr1=a1.split(v11,<span class="s3">5</span>);
+            Log.e(<span class="s2">&quot;xxxxxxxxx&quot;</span>,arrOfStr1[<span class="s3">1</span>]);
+            String b1=arrOfStr1[<span class="s3">1</span>];
+            String[] arrOfStr2=b1.split(a11,<span class="s3">5</span>);
+            a1=arrOfStr2[<span class="s3">0</span>];
+            <span class="s4">//  Log.e(&quot;xxxxxxxxx&quot;,a1);</span>
+
+
+
+        }
+
+
+
+        <span class="s4">//   Log.e(TAG,&quot;Video&quot; +a1);</span>
+      <span class="s4">//  Bundle bundle = getIntent().getExtras();</span>
+      <span class="s4">//  String showVideo = bundle.getString(&quot;videoId&quot;);</span>
+        <span class="s4">//Log.e(TAG,&quot;Video&quot; );</span>
+        youTubePlayer.cueVideo(a1);
+
+    }
+
+    @Override
+    <span class="s0">public void </span>onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+        <span class="s0">if </span>(youTubeInitializationResult.isUserRecoverableError()) {
+            youTubeInitializationResult.getErrorDialog(getActivity(), RECOVERY_REQUEST).show();
+        } <span class="s0">else </span>{
+
+            Toast.makeText(getActivity(), <span class="s2">&quot;Error Intializing Youtube Player&quot;</span>, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    <span class="s0">public void </span>onActivityResult(<span class="s0">int </span>requestCode, <span class="s0">int </span>resultCode, Intent data) {
+        <span class="s0">if </span>(requestCode == RECOVERY_REQUEST) {
+            getYouTubePlayerProvider().initialize(API_KEY, <span class="s0">this</span>);
+        }
+    }
+
+    <span class="s0">protected </span>YouTubePlayer.Provider getYouTubePlayerProvider() {
+        <span class="s0">return </span>youTubePlayerView;
+    }
+
+
+
+}</pre>
+</body>
+</html>

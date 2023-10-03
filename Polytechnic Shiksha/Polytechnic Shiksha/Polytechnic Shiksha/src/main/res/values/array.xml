@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="electure_array">
+        <item>Select Course</item>
+        <item>Engineering</item>
+        <item>Non-Engineering</item>
+        <item>PERSONAL GROOMING and SOFT SKILLS</item>
+        </string-array>
+    <string-array name="labmanual_array">
+        <item>Select Course</item>
+        <item>Engineering</item>
+    </string-array>
+    <string-array name="pass_year_array">
+        <item>Select Pass Year..</item>
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>Not Applicable</item>
+    </string-array>
+    <string-array name="passport_photo">
+        <item>Select number of passport photos required...</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>Not Required</item>
+    </string-array>
+
+</resources>

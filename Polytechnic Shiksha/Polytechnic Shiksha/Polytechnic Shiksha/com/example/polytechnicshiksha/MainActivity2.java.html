@@ -1,0 +1,390 @@
+<html>
+<head>
+<title>MainActivity2.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+.s4 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity2.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.polytechnicshiksha;
+
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.util.Log;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.EditText;
+<span class="s0">import </span>android.widget.ListView;
+<span class="s0">import </span>android.widget.ProgressBar;
+<span class="s0">import </span>android.widget.Toast;
+
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+
+<span class="s0">import </span>com.android.volley.DefaultRetryPolicy;
+<span class="s0">import </span>com.android.volley.Request;
+<span class="s0">import </span>com.android.volley.RequestQueue;
+<span class="s0">import </span>com.android.volley.Response;
+<span class="s0">import </span>com.android.volley.RetryPolicy;
+<span class="s0">import </span>com.android.volley.VolleyError;
+<span class="s0">import </span>com.android.volley.toolbox.JsonObjectRequest;
+<span class="s0">import </span>com.android.volley.toolbox.Volley;
+<span class="s0">import </span>com.loopj.android.http.AsyncHttpClient;
+<span class="s0">import </span>com.loopj.android.http.AsyncHttpResponseHandler;
+<span class="s0">import </span>com.loopj.android.http.RequestParams;
+
+<span class="s0">import </span>org.json.JSONArray;
+<span class="s0">import </span>org.json.JSONException;
+<span class="s0">import </span>org.json.JSONObject;
+
+<span class="s0">import </span>java.io.UnsupportedEncodingException;
+<span class="s0">import </span>java.util.ArrayList;
+<span class="s0">import </span>java.util.List;
+
+<span class="s0">import </span>cz.msebera.android.httpclient.Header;
+
+<span class="s0">public class </span>MainActivity2 <span class="s0">extends </span>AppCompatActivity {
+    String item;
+    List&lt;Hero&gt; heroList;
+    List&lt;String&gt; categories = <span class="s0">new </span>ArrayList&lt;String&gt;();
+    List&lt;String&gt; branchlist = <span class="s0">new </span>ArrayList&lt;&gt;();
+    EditText etSearch;
+    Button btnSearch;
+    ListView lvVideo;
+    ArrayList&lt;VideoDetails&gt; videoDetailsArrayList;
+    MyListAdapter customListAdapter;
+
+    String searchName;
+    String course ;
+    String year ;
+    String branch ;
+    String subcode ;
+    String unit ;
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        lvVideo=(ListView)findViewById(R.id.videoList);
+        heroList = <span class="s0">new </span>ArrayList&lt;&gt;();
+        Bundle bundle = getIntent().getExtras();
+         course = bundle.getString(<span class="s2">&quot;course&quot;</span>);
+         year = bundle.getString(<span class="s2">&quot;year&quot;</span>);
+         branch = bundle.getString(<span class="s2">&quot;branch&quot;</span>);
+         <span class="s3">//branch=branch.trim();</span>
+       <span class="s3">// branch=branch.replaceAll(&quot;\\s&quot;, &quot;&quot;);</span>
+        subcode = bundle.getString(<span class="s2">&quot;subcode&quot;</span>);
+        unit=bundle.getString(<span class="s2">&quot;unit&quot;</span>);
+        Log.e(<span class="s2">&quot;-----&gt;&quot;</span>,unit);
+
+
+        customListAdapter = <span class="s0">new </span>MyListAdapter(<span class="s0">this</span>, R.layout.my_custom_list, heroList);
+
+        <span class="s3">//attaching adapter to the listview</span>
+        lvVideo.setAdapter(customListAdapter);
+
+        <span class="s3">//attaching adapter to the listview</span>
+        <span class="s3">// listView.setAdapter(adapter);</span>
+
+
+        <span class="s3">//   lvVideo.setAdapter(adapter);</span>
+
+        customListAdapter.notifyDataSetChanged();
+        enviarPost(<span class="s0">true</span>);
+    }
+    <span class="s0">private void </span>showVideo() {
+        <span class="s3">//String URL=&quot;https://www.googleapis.com/youtube/v3/search?part=snippet&amp;maxResults=10&amp;q=&quot;+searchName+&quot;&amp;key=AIzaSyAoRYyYO2OwNU2MZhYHcltkbGoGoTqXR5g&quot;;</span>
+
+        <span class="s3">// String URL=&quot;http://192.168.43.95/admin/User_api/tcc?token_key=AaShTaK@2020@WaterSupplY&amp;subcode=&quot;+subcode+&quot;&amp;branch=&quot;+branch+&quot;&amp;year=&quot;+year+&quot;&amp;course=&quot;+course;</span>
+        <span class="s3">//String URL=&quot;http://192.168.43.95/admin/User_api/tcc&quot;;</span>
+<span class="s3">/* 
+        try { 
+            RequestQueue requestQueue = Volley.newRequestQueue(this); 
+          //  String URL = &quot;http://...&quot;; 
+            String URL=&quot;http://192.168.43.95/admin/User_api/tcc&quot;; 
+            JSONObject jsonBody = new JSONObject(); 
+            jsonBody.put(&quot;branch&quot;, branch); 
+            jsonBody.put(&quot;subcode&quot;, subcode); 
+            jsonBody.put(&quot;token_key&quot;, &quot;AaShTaK@2020@WaterSupplY&quot;); 
+ 
+ 
+            final String requestBody = jsonBody.toString(); 
+ 
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener&lt;String&gt;() { 
+                @Override 
+                public void onResponse(String response) { 
+                  Log.e(&quot;res&quot;,response.toString()); 
+                        try { 
+                            JSONObject jsonObject=new JSONObject(response); 
+                            JSONArray jsonArray=jsonObject.getJSONArray(&quot;Data&quot;); 
+                            for(int i=0;i&lt;jsonArray.length();i++){ 
+                                JSONObject jsonObject1 = jsonArray.getJSONObject(i); 
+                                String jsonVideoId=jsonObject1.getString(&quot;ItemId&quot;); 
+                                // Log.e(TAG,&quot;video ID&quot;+jsonVideoId); 
+                                //  String videoid=jsonVideoId.getString(&quot;kind&quot;); 
+                                //  JSONObject jsonsnippet= jsonObject1.getJSONObject(&quot;snippet&quot;); 
+                                //JSONObject jsonObjectdefault = jsonsnippet.getJSONObject(&quot;thumbnails&quot;).getJSONObject(&quot;default&quot;); 
+                                String Topic=jsonObject1.getString(&quot;Topic&quot;); 
+                                String Unit=jsonObject1.getString(&quot;Unit&quot;); 
+ 
+ 
+                                VideoDetails videoDetails=new VideoDetails(); 
+ 
+                                // String videoid=jsonVideoId.getString(&quot;kind&quot;); 
+                                //Log.e(TAG,&quot; New Video Id&quot; +videoid); 
+/* 
+                        videoDetails.setURL(&quot;url&quot;); 
+                        videoDetails.setVideoName(Topic); 
+                        videoDetails.setVideoDesc(Unit); 
+ 
+                        videoDetails.setVideoId(jsonVideoId); 
+ 
+                        videoDetailsArrayList.add(videoDetails); 
+ 
+ 
+                                heroList.add(new Hero(Topic,jsonVideoId , Unit)); 
+ 
+ 
+//                         videoDetailsArrayList.clear(); 
+ 
+ 
+                            } 
+                            lvVideo.setAdapter(customListAdapter); 
+ 
+                            customListAdapter.notifyDataSetChanged(); 
+                            // lvVideo.setAdapter(null); 
+                        } catch (JSONException e) { 
+                            e.printStackTrace(); 
+                        } 
+ 
+                    } 
+ 
+            }, new Response.ErrorListener() { 
+                @Override 
+                public void onErrorResponse(VolleyError error) { 
+                    Log.e(&quot;VOLLEY&quot;, error.toString()); 
+                } 
+            }) { 
+                @Override 
+                public String getBodyContentType() { 
+                    return &quot;application/json; charset=utf-8&quot;; 
+                } 
+ 
+                @Override 
+                public byte[] getBody()  { 
+                    try { 
+                        return requestBody == null ? null : requestBody.getBytes(&quot;utf-8&quot;); 
+                    } catch (UnsupportedEncodingException uee) { 
+                        VolleyLog.wtf(&quot;Unsupported Encoding while trying to get the bytes of %s using %s&quot;, requestBody, &quot;utf-8&quot;); 
+                        return null; 
+                    } 
+                } 
+ 
+                @Override 
+                protected Response&lt;String&gt; parseNetworkResponse(NetworkResponse response) { 
+                    String responseString = &quot;&quot;; 
+                    if (response != null) { 
+                        responseString = String.valueOf(response.statusCode); 
+                        // can get more details such as response.headers 
+                    } 
+                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response)); 
+                } 
+            }; 
+ 
+            requestQueue.add(stringRequest); 
+        } catch (JSONException e) { 
+            e.printStackTrace(); 
+        } 
+        */</span>
+        String URL=<span class="s2">&quot;http://3.140.51.101/admin/User_api/tcc&quot;</span>;
+        JSONObject postData = <span class="s0">new </span>JSONObject();
+        <span class="s0">try </span>{
+            postData.put(<span class="s2">&quot;branch&quot;</span>, branch);
+            postData.put(<span class="s2">&quot;subcode&quot;</span>, subcode);
+            postData.put(<span class="s2">&quot;token_key&quot;</span>, <span class="s2">&quot;AaShTaK@2020@WaterSupplY&quot;</span>);
+
+        } <span class="s0">catch </span>(JSONException e) {
+            e.printStackTrace();
+        }
+        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest JsonObjectRequest=<span class="s0">new </span>JsonObjectRequest(Request.Method.POST, URL,postData, <span class="s0">new </span>Response.Listener&lt;JSONObject&gt;() {
+            @Override
+            <span class="s0">public void </span>onResponse(JSONObject  response) {
+                <span class="s0">try </span>{
+                    Log.e(response.toString(),<span class="s2">&quot;sas&quot;</span>);
+                    JSONObject jsonObject=response;
+                    JSONArray jsonArray=jsonObject.getJSONArray(<span class="s2">&quot;Data&quot;</span>);
+                    <span class="s0">for</span>(<span class="s0">int </span>i=<span class="s4">0</span>;i&lt;jsonArray.length();i++){
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        String jsonVideoId=jsonObject1.getString(<span class="s2">&quot;ItemId&quot;</span>);
+                        <span class="s3">// Log.e(TAG,&quot;video ID&quot;+jsonVideoId);</span>
+                        <span class="s3">//  String videoid=jsonVideoId.getString(&quot;kind&quot;);</span>
+                        <span class="s3">//  JSONObject jsonsnippet= jsonObject1.getJSONObject(&quot;snippet&quot;);</span>
+                        <span class="s3">//JSONObject jsonObjectdefault = jsonsnippet.getJSONObject(&quot;thumbnails&quot;).getJSONObject(&quot;default&quot;);</span>
+                        String Topic=jsonObject1.getString(<span class="s2">&quot;Topic&quot;</span>);
+                        String Unit=jsonObject1.getString(<span class="s2">&quot;Unit&quot;</span>);
+
+
+          <span class="s3">//              VideoDetails videoDetails=new VideoDetails();</span>
+
+                        <span class="s3">// String videoid=jsonVideoId.getString(&quot;kind&quot;);</span>
+                        <span class="s3">//Log.e(TAG,&quot; New Video Id&quot; +videoid);</span>
+<span class="s3">/* 
+                        videoDetails.setURL(&quot;url&quot;); 
+                        videoDetails.setVideoName(Topic); 
+                        videoDetails.setVideoDesc(Unit); 
+ 
+                        videoDetails.setVideoId(jsonVideoId); 
+ 
+                        videoDetailsArrayList.add(videoDetails); 
+ 
+ */</span>
+
+
+
+                        heroList.add(<span class="s0">new </span>Hero(Topic,jsonVideoId , Unit));
+
+
+<span class="s3">//                         videoDetailsArrayList.clear();</span>
+
+
+                    }
+                    lvVideo.setAdapter(customListAdapter);
+
+                    customListAdapter.notifyDataSetChanged();
+                    <span class="s3">// lvVideo.setAdapter(null);</span>
+                } <span class="s0">catch </span>(JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, <span class="s0">new </span>Response.ErrorListener() {
+            @Override
+            <span class="s0">public void </span>onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        }) ;
+
+
+        <span class="s0">int </span>socketTimeout = <span class="s4">30000</span>;
+        RetryPolicy policy = <span class="s0">new </span>DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        JsonObjectRequest.setRetryPolicy(policy);
+        requestQueue.add(JsonObjectRequest);
+
+    }
+
+    <span class="s0">private void </span>enviarPost(<span class="s0">boolean </span>modo) {
+        String URL=<span class="s2">&quot;http://3.140.51.101/admin/User_api/tcc&quot;</span>;
+
+        AsyncHttpClient clientSendPost = <span class="s0">new </span>AsyncHttpClient();
+        RequestParams requestParams = <span class="s0">new </span>RequestParams();
+        String mode = !modo ? <span class="s2">&quot;GET&quot; </span>: <span class="s2">&quot;POST&quot;</span>;
+        ArrayList&lt;String&gt; itemsList = <span class="s0">new </span>ArrayList&lt;&gt;();
+        itemsList.add(<span class="s2">&quot;a&quot;</span>);
+        itemsList.add(<span class="s2">&quot;b&quot;</span>);
+        requestParams.put(<span class="s2">&quot;branch&quot;</span>, branch);
+        requestParams.put(<span class="s2">&quot;subcode&quot;</span>, subcode);
+        requestParams.put(<span class="s2">&quot;token_key&quot;</span>, <span class="s2">&quot;AaShTaK@2020@WaterSupplY&quot;</span>);
+        requestParams.put(<span class="s2">&quot;unit&quot;</span>, unit);
+
+        <span class="s3">// requestParams.put(&quot;token_key&quot;, &quot;AaShTaK@2020@WaterSupplY&quot;);</span>
+        clientSendPost.post(URL, requestParams, <span class="s0">new </span>AsyncHttpResponseHandler() {
+            @Override
+            <span class="s0">public void </span>onSuccess(<span class="s0">int </span>statusCode, Header[] headers, <span class="s0">byte</span>[] responseBody) {
+                <span class="s0">if </span>(statusCode == <span class="s4">200</span>) { <span class="s3">// I think success means always code 200</span>
+                    String res = <span class="s0">null</span>;
+                    <span class="s0">try </span>{
+                        res = <span class="s0">new </span>String(responseBody, <span class="s2">&quot;UTF-8&quot;</span>);
+                        Log.e(<span class="s2">&quot;-----&gt;&quot;</span>,res);
+                        JSONObject jsonObject=<span class="s0">new </span>JSONObject(res);
+                        JSONArray jsonArray=jsonObject.getJSONArray(<span class="s2">&quot;Data&quot;</span>);
+                        <span class="s0">for</span>(<span class="s0">int </span>i=<span class="s4">0</span>;i&lt;jsonArray.length();i++){
+                            ArrayList&lt;String&gt; jsonVideoId=<span class="s0">new </span>ArrayList&lt;&gt;();
+                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                           <span class="s0">for</span>(<span class="s0">int </span>j=<span class="s4">0</span>;j&lt;<span class="s4">30</span>;j++)
+                           {
+                               jsonVideoId.add(jsonObject1.getString(<span class="s2">&quot;ItemId&quot;</span>+j));
+                           }
+                             <span class="s3">// Log.e(TAG,&quot;video ID&quot;+jsonVideoId);</span>
+                            <span class="s3">//  String videoid=jsonVideoId.getString(&quot;kind&quot;);</span>
+                            <span class="s3">//  JSONObject jsonsnippet= jsonObject1.getJSONObject(&quot;snippet&quot;);</span>
+                            <span class="s3">//JSONObject jsonObjectdefault = jsonsnippet.getJSONObject(&quot;thumbnails&quot;).getJSONObject(&quot;default&quot;);</span>
+                            String Topic=jsonObject1.getString(<span class="s2">&quot;Topic&quot;</span>);
+                            String Unit=jsonObject1.getString(<span class="s2">&quot;Unit&quot;</span>);
+
+
+                            <span class="s3">//              VideoDetails videoDetails=new VideoDetails();</span>
+
+                            <span class="s3">// String videoid=jsonVideoId.getString(&quot;kind&quot;);</span>
+                            <span class="s3">//Log.e(TAG,&quot; New Video Id&quot; +videoid);</span>
+<span class="s3">/* 
+                        videoDetails.setURL(&quot;url&quot;); 
+                        videoDetails.setVideoName(Topic); 
+                        videoDetails.setVideoDesc(Unit); 
+ 
+                        videoDetails.setVideoId(jsonVideoId); 
+ 
+                        videoDetailsArrayList.add(videoDetails); 
+ 
+ */</span>
+
+
+                       <span class="s0">for</span>(<span class="s0">int </span>k=<span class="s4">0</span>;k&lt;<span class="s4">30</span>;k++) {
+                           <span class="s0">if</span>(!jsonVideoId.get(k).isEmpty()) {
+                               heroList.add(<span class="s0">new </span>Hero(Topic, jsonVideoId.get(k), Unit));
+                           }
+                       }
+
+<span class="s3">//                         videoDetailsArrayList.clear();</span>
+
+
+                        }
+
+                        lvVideo.setAdapter(customListAdapter);
+                        ProgressBar p1=findViewById(R.id.p1);
+                        p1.setVisibility(View.INVISIBLE);
+                        customListAdapter.notifyDataSetChanged();
+
+                      <span class="s3">//  Log.e(&quot;app&quot;, res);</span>
+                    } <span class="s0">catch </span>(UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    <span class="s0">catch </span>(JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(getBaseContext(), <span class="s2">&quot;success data from server&quot;</span>, Toast.LENGTH_SHORT)
+                            .show();
+
+                    <span class="s3">// PopulateListView(ParserJSON(res));</span>
+                }
+
+                Log.i(<span class="s2">&quot;app&quot;</span>, responseBody.toString());
+
+            }
+
+            @Override
+            <span class="s0">public void </span>onFailure(<span class="s0">int </span>statusCode, Header[] headers, <span class="s0">byte</span>[] responseBody, Throwable error) {
+                Toast.makeText(getBaseContext(), <span class="s2">&quot;Error getting data from server&quot;</span>, Toast.LENGTH_SHORT)
+                        .show();
+
+                Log.e(<span class="s2">&quot;app&quot;</span>, <span class="s2">&quot;User could not be created&quot;</span>);
+            }
+        });
+    }
+
+}</pre>
+</body>
+</html>

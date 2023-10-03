@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>content_mcq.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000; font-style: italic;}
+.s1 { color: #0000ff; font-weight: bold;}
+.s2 { color: #000000;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #000080; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+content_mcq.xml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s3">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s3">=&quot;utf-8&quot;</span><span class="s0">?&gt;</span>
+&lt;<span class="s4">androidx.constraintlayout.widget.ConstraintLayout </span><span class="s1">xmlns:android</span><span class="s3">=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="s1">xmlns:app</span><span class="s3">=&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="s1">xmlns:tools</span><span class="s3">=&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+    <span class="s1">android:layout_height</span><span class="s3">=&quot;match_parent&quot;</span>
+    <span class="s1">android:background</span><span class="s3">=&quot;@color/back_screen&quot;</span>
+    <span class="s1">app:layout_behavior</span><span class="s3">=&quot;@string/appbar_scrolling_view_behavior&quot;</span>&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_mcq_course&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">android:gravity</span><span class="s3">=&quot;right|center&quot;</span>
+        <span class="s1">app:layout_constraintBottom_toBottomOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintEnd_toEndOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintHorizontal_bias</span><span class="s3">=&quot;0.0&quot;</span>
+        <span class="s1">app:layout_constraintStart_toStartOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintTop_toTopOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintVertical_bias</span><span class="s3">=&quot;0.22&quot;</span>
+        <span class="s1">tools:visibility</span><span class="s3">=&quot;visible&quot; </span>/&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_mcq_year&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">app:layout_constraintBottom_toBottomOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintEnd_toEndOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintStart_toStartOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintTop_toBottomOf</span><span class="s3">=&quot;@+id/spinner_mcq_course&quot;</span>
+        <span class="s1">app:layout_constraintVertical_bias</span><span class="s3">=&quot;0.144&quot;</span>
+        <span class="s1">tools:visibility</span><span class="s3">=&quot;visible&quot; </span>/&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_mcq_branch&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">app:layout_constraintBottom_toBottomOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintEnd_toEndOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintHorizontal_bias</span><span class="s3">=&quot;0.0&quot;</span>
+        <span class="s1">app:layout_constraintStart_toStartOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintTop_toBottomOf</span><span class="s3">=&quot;@+id/spinner_mcq_year&quot;</span>
+        <span class="s1">app:layout_constraintVertical_bias</span><span class="s3">=&quot;0.193&quot; </span>/&gt;
+
+    &lt;<span class="s4">Button</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/mcqbtngo&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;176dp&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;69dp&quot;</span>
+        <span class="s1">android:text</span><span class="s3">=&quot;Go&quot;</span>
+        <span class="s1">app:layout_constraintBottom_toBottomOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintEnd_toEndOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintStart_toStartOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintTop_toBottomOf</span><span class="s3">=&quot;@+id/spinner_mcq_branch&quot; </span>/&gt;
+
+    &lt;<span class="s4">WebView</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/webview_mcq&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">app:layout_constraintBottom_toBottomOf</span><span class="s3">=&quot;@+id/mcqbtngo&quot;</span>
+        <span class="s1">app:layout_constraintEnd_toEndOf</span><span class="s3">=&quot;@+id/mcqbtngo&quot;</span>
+        <span class="s1">app:layout_constraintHorizontal_bias</span><span class="s3">=&quot;0.0&quot;</span>
+
+        <span class="s1">app:layout_constraintStart_toStartOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintTop_toBottomOf</span><span class="s3">=&quot;@+id/mcqbtngo&quot;</span>
+        <span class="s1">app:layout_constraintTop_toTopOf</span><span class="s3">=&quot;parent&quot;</span>
+        <span class="s1">app:layout_constraintVertical_bias</span><span class="s3">=&quot;0.022&quot; </span>/&gt;
+
+
+&lt;/<span class="s4">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</pre>
+</body>
+</html>

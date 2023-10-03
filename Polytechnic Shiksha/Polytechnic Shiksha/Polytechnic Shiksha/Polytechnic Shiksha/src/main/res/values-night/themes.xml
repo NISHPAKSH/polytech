@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.PolytechnicELearning1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/signal_bar_color</item>
+        <item name="colorOnPrimary">@color/blacklight</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/blacklight</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:actionMenuTextColor">@color/text_color</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.PolytechnicELearning.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Menu item text color. -->
+        <item name="android:actionMenuTextColor">@color/text_color</item>
+    </style>
+
+    <style name="Theme.PolytechnicELearning.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:itemTextAppearance">@style/AppTheme.ItemTextStyle</item>
+        <!-- Menu item text color. -->
+        <item name="android:actionMenuTextColor">@color/text_color</item>
+    </style>
+    <style name="AppTheme.ItemTextStyle" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.PolytechnicELearning.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+        <!-- Menu item text color. -->
+        <item name="android:actionMenuTextColor">@color/text_color</item>
+    </style>
+</resources>

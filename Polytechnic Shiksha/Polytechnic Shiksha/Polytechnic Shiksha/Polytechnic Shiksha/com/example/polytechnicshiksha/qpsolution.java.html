@@ -1,0 +1,739 @@
+<html>
+<head>
+<title>qpsolution.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+qpsolution.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.polytechnicshiksha;
+
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.Menu;
+<span class="s0">import </span>android.view.MenuItem;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.webkit.WebView;
+<span class="s0">import </span>android.widget.AdapterView;
+<span class="s0">import </span>android.widget.ArrayAdapter;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.Spinner;
+
+<span class="s0">import </span>androidx.appcompat.app.AlertDialog;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+
+<span class="s0">import </span>java.util.ArrayList;
+<span class="s0">import </span>java.util.List;
+
+<span class="s0">public class </span>qpsolution <span class="s0">extends </span>AppCompatActivity {
+
+    String item7;
+    String item8;
+    String item9;
+    String item10;
+
+    <span class="s0">private </span>Button qpsolbtn ;
+
+    List&lt;String&gt; yearlist = <span class="s0">new </span>ArrayList&lt;String&gt;();
+    List&lt;String&gt; branchlist = <span class="s0">new </span>ArrayList&lt;&gt;();
+    List&lt;String&gt; pyearlist = <span class="s0">new </span>ArrayList&lt;&gt;();
+
+    ArrayAdapter&lt;CharSequence&gt; adapter;
+    ArrayAdapter&lt;String&gt; secondAdapter ;
+    ArrayAdapter&lt;String&gt; thirdAdapter ;
+    ArrayAdapter&lt;String&gt; forthAdapter ;
+
+    WebView webview_qpsol;
+
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_qpsolution);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(<span class="s2">&quot;Old QP Solution&quot;</span>);
+
+        qpsolbtn = (Button) findViewById(R.id.buttonqp);
+
+        webview_qpsol = (WebView) findViewById(R.id.webview_qpsol);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_qpsol_course);
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner_qpsol_year);
+        Spinner spinner3 = (Spinner) findViewById(R.id.spinner_qpsol_branch);
+        Spinner spinner4 = (Spinner) findViewById(R.id.spinner_qpsol_pyear);
+
+        adapter = ArrayAdapter.createFromResource(<span class="s0">this</span>,R.array.labmanual_array, android.R.layout.simple_spinner_dropdown_item);
+        secondAdapter = <span class="s0">new </span>ArrayAdapter&lt;String&gt;(<span class="s0">this</span>, android.R.layout.simple_spinner_item, yearlist);
+        thirdAdapter= <span class="s0">new </span>ArrayAdapter&lt;String&gt;(<span class="s0">this</span>, android.R.layout.simple_spinner_item, branchlist);
+        forthAdapter= <span class="s0">new </span>ArrayAdapter&lt;String&gt;(<span class="s0">this</span>, android.R.layout.simple_spinner_item, pyearlist);
+
+        spinner2.setEnabled(<span class="s0">false</span>);
+        spinner3.setEnabled(<span class="s0">false</span>);
+        spinner4.setEnabled(<span class="s0">false</span>);
+
+        qpsolbtn.setEnabled(<span class="s0">false</span>);
+
+        <span class="s3">//yearlist.add(&quot;Select Year&quot;);</span>
+        <span class="s3">//branchlist.add(&quot;Select Branch&quot;);</span>
+        <span class="s3">//pyearlist.add(&quot;Select QP Solution for year&quot;);</span>
+
+
+        spinner.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent, View view, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+                item7 = parent.getItemAtPosition(position).toString();
+                <span class="s3">//Toast.makeText(parent.getContext(), &quot;Selected: &quot; + item7, Toast.LENGTH_LONG).show();</span>
+                <span class="s0">if </span>(item7.matches(<span class="s2">&quot;Engineering&quot;</span>))
+                {
+                    spinner2.setEnabled(<span class="s0">true</span>);
+                    yearlist.clear();
+                    yearlist.add(<span class="s2">&quot;Select Year&quot;</span>);
+                    yearlist.add(<span class="s2">&quot;First Year&quot;</span>);
+                    yearlist.add(<span class="s2">&quot;Second Year&quot;</span>);
+                    yearlist.add(<span class="s2">&quot;Third Year&quot;</span>);
+                    qpsolbtn.setEnabled(<span class="s0">false</span>);
+                }
+                <span class="s0">else if </span>(item7.matches(<span class="s2">&quot;Non-Engineering&quot;</span>))
+                {
+                    spinner2.setEnabled(<span class="s0">true</span>);
+                    yearlist.clear();
+                    yearlist.add(<span class="s2">&quot;Select Year&quot;</span>);
+                    yearlist.add(<span class="s2">&quot;First Year&quot;</span>);
+                    yearlist.add(<span class="s2">&quot;Second Year&quot;</span>);
+                    yearlist.add(<span class="s2">&quot;Third Year&quot;</span>);
+                    qpsolbtn.setEnabled(<span class="s0">false</span>);
+                }
+                <span class="s0">else</span>
+                {
+                    yearlist.clear();
+                    branchlist.clear();
+                    pyearlist.clear();
+
+                    yearlist.add(<span class="s2">&quot;Select Year&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;Select Branch&quot;</span>);
+                    pyearlist.add(<span class="s2">&quot;Select QP Solution for year&quot;</span>);
+
+                    secondAdapter.notifyDataSetChanged();
+                    thirdAdapter.notifyDataSetChanged();
+                    forthAdapter.notifyDataSetChanged();
+
+                    spinner2.setEnabled(<span class="s0">false</span>);
+                    spinner3.setEnabled(<span class="s0">false</span>);
+                    spinner4.setEnabled(<span class="s0">false</span>);
+
+                    qpsolbtn.setEnabled(<span class="s0">false</span>);
+                }
+
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+            }
+        });
+
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
+        spinner.setAdapter(adapter);
+
+
+        spinner2.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent, View view, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+                item8 = parent.getItemAtPosition(position).toString();
+                <span class="s0">if </span>(item8.matches(<span class="s2">&quot;First Year&quot;</span>))
+                {
+                    spinner3.setEnabled(<span class="s0">true</span>);
+                    branchlist.clear();
+                    branchlist.add(<span class="s2">&quot;Select Subject&quot;</span>);
+
+                    pyearlist.clear();
+                    pyearlist.add(<span class="s2">&quot;Select QP Solution for year&quot;</span>);
+
+                    thirdAdapter.notifyDataSetChanged();
+                    forthAdapter.notifyDataSetChanged();
+                    spinner4.setEnabled(<span class="s0">false</span>);
+                    branchlist.add(<span class="s2">&quot;101 ENGLISH AND COMMUNICATION SKILLS&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;102 APPLIED PHYSICS&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;103 APPLIED CHEMISTRY&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;104 APPLIED MATHEMATICS&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;105 COMPUTER AND IT FUNDAMENTALS&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;106 APPLIED MECHANICS&quot;</span>);
+                    qpsolbtn.setEnabled(<span class="s0">false</span>);
+                }
+                <span class="s0">else if </span>(item8.matches(<span class="s2">&quot;Second Year&quot;</span>))
+                {
+                    spinner3.setEnabled(<span class="s0">true</span>);
+                    branchlist.clear();
+                    branchlist.add(<span class="s2">&quot;Select Subject&quot;</span>);
+
+                    pyearlist.clear();
+                    pyearlist.add(<span class="s2">&quot;Select QP Solution for year&quot;</span>);
+
+                    thirdAdapter.notifyDataSetChanged();
+                    forthAdapter.notifyDataSetChanged();
+                    spinner4.setEnabled(<span class="s0">false</span>);
+
+                    branchlist.add(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;COMPUTER SCIENCE ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>);
+                    qpsolbtn.setEnabled(<span class="s0">false</span>);
+                }
+                <span class="s0">else if </span>(item8.matches(<span class="s2">&quot;Third Year&quot;</span>))
+                {
+                    spinner3.setEnabled(<span class="s0">true</span>);
+                    branchlist.clear();
+                    branchlist.add(<span class="s2">&quot;Select Subject&quot;</span>);
+
+                    pyearlist.clear();
+                    pyearlist.add(<span class="s2">&quot;Select QP Solution for year&quot;</span>);
+
+                    thirdAdapter.notifyDataSetChanged();
+                    forthAdapter.notifyDataSetChanged();
+                    spinner4.setEnabled(<span class="s0">false</span>);
+
+                    branchlist.add(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;COMPUTER SCIENCE ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>);
+                    branchlist.add(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>);
+                    qpsolbtn.setEnabled(<span class="s0">false</span>);
+                }
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+            }
+        });
+
+        secondAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        spinner2.setAdapter(secondAdapter);
+
+
+        spinner3.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent, View view, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+
+                item9 = parent.getItemAtPosition(position).toString();
+
+                <span class="s0">if</span>((branchlist.contains(<span class="s2">&quot;&quot; </span>+item9)) &amp;&amp; (!item9.matches(<span class="s2">&quot;Select Branch&quot;</span>)) &amp;&amp; (!item9.matches(<span class="s2">&quot;Select Subject&quot;</span>)))
+                {
+                    spinner4.setEnabled(<span class="s0">true</span>);
+                    pyearlist.clear();
+                    pyearlist.add(<span class="s2">&quot;Select QP Solution for year&quot;</span>);
+                    forthAdapter.notifyDataSetChanged();
+                    pyearlist.add(<span class="s2">&quot;2015&quot;</span>);
+                    pyearlist.add(<span class="s2">&quot;2016&quot;</span>);
+                    pyearlist.add(<span class="s2">&quot;2017&quot;</span>);
+                    pyearlist.add(<span class="s2">&quot;2018&quot;</span>);
+                    pyearlist.add(<span class="s2">&quot;2019&quot;</span>);
+                    qpsolbtn.setEnabled(<span class="s0">false</span>);
+                }
+                }
+
+
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+            }
+        });
+
+        thirdAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        spinner3.setAdapter(thirdAdapter);
+
+        spinner4.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+            @Override
+            <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent, View view, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+                item10 = parent.getItemAtPosition(position).toString();
+                <span class="s0">if</span>((pyearlist.contains(<span class="s2">&quot;&quot;</span>+item10)) &amp;&amp; !item10.matches(<span class="s2">&quot;Select QP Solution for year&quot;</span>))
+                {
+                    qpsolbtn.setEnabled(<span class="s0">true</span>);
+                }
+            }
+
+            @Override
+            <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+            }
+        });
+        forthAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        spinner4.setAdapter(forthAdapter);
+
+        qpsolbtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+
+                <span class="s0">if</span>(item7.matches(<span class="s2">&quot;Engineering&quot;</span>))
+                {
+                    <span class="s0">if </span>(item8.matches(<span class="s2">&quot;First Year&quot;</span>))
+                    {
+                        <span class="s0">if </span>(item9.matches(<span class="s2">&quot;101 ENGLISH AND COMMUNICATION SKILLS&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1fXtt-YKKOT1zuRW_9E_lK1oBEik1eyVu&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/101uhgOdOgqFJP0lH2p_NO_xitcOTfld1&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1eG3oAKMiL3A7q5qOj7fMqcWBr49lF23z&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/150myhv3GS5Se_ef1SbFe7UFXjeZprDlz&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1AsW7_U78jVoNE8jTH0GENUekZGbad3Dl&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;102 APPLIED PHYSICS&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/140bZf6-n28otzjCyqHzD8HJ31BB58HWu&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1A3XxYjLpzjJ3ZRrTD6pHPsU99xvbLAfo&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1QZspieuTUCB4y4TQhrJgpSE52OXTq-Wu&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1MbTBSvFuYCTmOXQTpyHJWe9Kr7emwCcx&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1OtIMNDEfLaY_y5IvuBxwlRtE6gGFjCfa&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;103 APPLIED CHEMISTRY&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1BScAETO1VWWhegxBgdkNpI3m2zz9EJgu&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1urEKS9WcHc9jGHAOrrmUUxMOlwgXDA94&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1Cw0eCeHu1aVdfKsbL1l6B7yz9DW3mhl0&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1xsexLHKIJV7ycKrcogFX2RGPTPzNZGhw&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1nygjmtGiKbTGMxBLL-E_IPc6xojgKASs&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;104 APPLIED MATHEMATICS&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/12Ue0bqULHiRDbEFvhq1y3qKUJNs06sL5&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1HmsKOPreIJJv7lMsWOfS5TdKeZdE0seM&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/12bRRusWg6QyhlRLEipgwxFUB1kODoxhd&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1CZhKezRPeUD6sAqndxFzmz3C6Gz_vZ15&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1021nrdeIDVOL2JzUYepjObSf4DvkN3GI&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;105 COMPUTER AND IT FUNDAMENTALS&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1gKeT0HNScnaqdNeZjlZ1EXtHXlQBscba&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1IsSNrcKrPjDCHBHGxMb4RN9tQkjrQbD6&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1NdFksLp1-oYtS7522qzVitr-27qhrzo4&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1QuadLUKqqqfQ-Gz6fazpdK5hgr3xzrue&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1g8oqgcHNhxQTyQAm3uVmW5VmBt1jCQ1O&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;106 APPLIED MECHANICS&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1hJgPVP8YwlSyDg5_fiVcfq93Ozg1nfVZ&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1mRPq_ntb1yy9CSiQ5f5r4rwIVmo1SW4g&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1y-FzbzHkN7pKvTKm_jS9we6Vb6Z8PDo1&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/18ej44NTKQkgrmDe5nG0V7FpRLFrdszn4&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/file/d/1EaECO7JsljPN38XDkM7yJjT7iZ0dEXVW&quot;</span>);
+                            }
+
+                        }
+                    }
+                    <span class="s0">else if</span>(item8.matches(<span class="s2">&quot;Second Year&quot;</span>))
+                    {
+                        <span class="s0">if </span>(item9.matches(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1tyivy4uxXlNgxruXQsAqhG76f9D41fLq&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1MULxcZVP7Vs-4kw0SKEE_GzkZr71dy-w&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1AzUbKydgvw-EaTK34Q8uvSwdliFCNCFF&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1AzUbKydgvw-EaTK34Q8uvSwdliFCNCFF&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1aBdawbHX9F_FL6KKSJXRrJa1q-V-n0Mj&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>))
+                        {
+                        <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                        {
+                            webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1mzU0NBWQVlVmbJrH8OBPXXrr5wLEMdHo&quot;</span>);
+                        }
+                        <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                        {
+                            webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1kO0HTvXmrvVBdAlQsgQDO2X73FQoZ3Y_&quot;</span>);
+                        }
+                        <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                        {
+                            webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1U8Mc2R_bIaFyIsVdfbwt966AVif9PmjZ&quot;</span>);
+                        }
+                        <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                        {
+                            webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1tCuSDIe0vzGWp5JpVKXA8pZCZGjcOtlM&quot;</span>);
+                        }
+                        <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                        {
+                            webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1o-v8sTwL8x-wsgsow1sj8J3ufezf3IIH&quot;</span>);
+                        }
+
+                    }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;COMPUTER SCIENCE ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1e_aWQOB4lKGsLfDz6Q1SAj-zEYWe04tM&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1E9WxN_Uek679wF6jtNHwdfz7maYdu2wA&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1w__VZT_xBLYQ8KUYjhCcjjB-5YUl0-2m&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1EdzcUMJubHSeNh-jK03lGdJsN8WzW1Z4&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1yrrm6LyrxTP4I3G5pjCt1AwWNDcopjev&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/13M3rapQXabuH__dWVEMBi8aEalslI7fd&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1ekAG_jQTTFQ4lDQ2vZRvQxDpWmaQvHF2&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1PnmphiZiSehavHE-5CAGDHUNlpV0qKJL&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/14Lu6h1eZCLHKBJd8tp7ETCTJgtphRgrd&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1t2dqFaZYO98J01mYxDeBER4l-RrjPkBe&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1MWCfY4TF-TvMysnf2SFk9godeezQ43PB&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1y_58QQ8DRokUQmc76vLUGcSkxHA8z2RP&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1y_ykqGhFWhEirS8Qix0bPDJoUvGOxqD0&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1VUGfpEhEtcbAyeQ1ZNBbgkTwXxq7fxjR&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1Zd1RWvBOT2aG6tekNJdS4C5hEaOzD_bO&quot;</span>);
+                            }
+
+                        }
+                    }
+                    <span class="s0">else if</span>(item8.matches(<span class="s2">&quot;Third Year&quot;</span>))
+                    {
+                        <span class="s0">if </span>(item9.matches(<span class="s2">&quot;ELECTRICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/18Qf6sMbvS-LL86eoAwKKeya4Q_dln8qS&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1gSDOqIpvJmxwWQnpLRh098eue92IYnsQ&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1n7XmwGnVfmFw_6LjydYvu7SHuxHTpQ2n&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1HpI-pvusAsbc85yuHfSEpO9mexcSADkM&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1ASubMS6xrC8SrgtcSxCDDuxJ7lanzDqL&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;CIVIL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1D4wUXBPiBKj7WwwvSdIPH-_WWn0U1dln&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1i6PB8vDAWtvkQJhcUVVXoYjzSDd3DJ_-&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1l9FxbB_is5ZPPGJ80FApYiBdJRrSLZId&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1ZWCrWrTg9dCpon7HrmdhzSZkHgDsoa-6&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1bKCsvl2PW7zC_1uSyriT7iFxAbM_CXkx&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;COMPUTER SCIENCE ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1v2j9rW-2m3-Si-0DFtAFJn1SOTYGsFh1&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1IKpHE-PEsUernQlsA7PyluokcrgtB0hR&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1tAoG_Cpv_5aR1JlF7JLrpvWSVM0TbVYw&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/17SNe78zg0Ns3V1DlhL0KGVfUrxymJs1z&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1OefaGBPYp2Z6VTfIh76OlOkZ8fSOfYh5&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;ELECTRONICS ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/15NfH4db01xs0G5dRQVqNU7yth7Ep3AVV&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1FwQHbBUCIdOcXsQ5CNF3DOCFh4wNq0Wu&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1rkcOqAGqt_dlXviAXbaABb59qH-zKVu7&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/19UcE8YACtfYBZksPNE2e2_J5gGrSA7k-&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1TkBpGAQPuWwxJLC2P1jPYZy-IrK11YGh&quot;</span>);
+                            }
+
+                        }
+                        <span class="s0">else if </span>(item9.matches(<span class="s2">&quot;MECHANICAL ENGINEERING&quot;</span>))
+                        {
+                            <span class="s0">if</span>(item10.matches(<span class="s2">&quot;2015&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1NJtl-htpk6yRuyzNYC1rJzXFK9qo_fa9&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2016&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1eCtbulkgUYIjp8GjlpiYAuhZB6jCpDT3&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2017&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1bThBllDO6DftOPhvwzjhIP5jqVMdWoPJ&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2018&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1sA1QS56A8ICdwewJ__HapUrkvYF-lP8O&quot;</span>);
+                            }
+                            <span class="s0">else if</span>(item10.matches(<span class="s2">&quot;2019&quot;</span>))
+                            {
+                                webview_qpsol.loadUrl(<span class="s2">&quot;https://drive.google.com/drive/folders/1BtVsEv8qAig0SfUdp4UtavnHA_W1VXg4&quot;</span>);
+                            }
+
+                        }
+                    }
+                }
+                <span class="s0">else</span>
+                {
+
+                }
+
+            }
+        });
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onCreateOptionsMenu(Menu menu) {
+        <span class="s3">// Inflate the menu; this adds items to the action bar if it is present.</span>
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        <span class="s0">return true</span>;
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onOptionsItemSelected(MenuItem item) {
+        <span class="s3">// Handle action bar item clicks here. The action bar will</span>
+        <span class="s3">// automatically handle clicks on the Home/Up button, so long</span>
+        <span class="s3">// as you specify a parent activity in AndroidManifest.xml.</span>
+        <span class="s0">int </span>id = item.getItemId();
+
+        <span class="s3">//noinspection SimplifiableIfStatement</span>
+
+        <span class="s0">if </span>(id == R.id.home) {
+            startActivity(<span class="s0">new </span>Intent(qpsolution.<span class="s0">this</span>, MainActivity.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.important_link) {
+            startActivity(<span class="s0">new </span>Intent(qpsolution.<span class="s0">this</span>,imp_link.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.Syllabus) {
+            startActivity(<span class="s0">new </span>Intent(qpsolution.<span class="s0">this</span>,syllabus.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.exit) {
+            <span class="s0">new </span>AlertDialog.Builder(<span class="s0">this</span>)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(<span class="s2">&quot;Closing Activity&quot;</span>)
+                    .setMessage(<span class="s2">&quot;Are you sure you want to close this activity?&quot;</span>)
+                    .setPositiveButton(<span class="s2">&quot;Yes&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        <span class="s0">public void </span>onClick(DialogInterface dialog, <span class="s0">int </span>which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton(<span class="s2">&quot;No&quot;</span>, <span class="s0">null</span>)
+                    .show();
+            <span class="s0">return true</span>;
+        }
+
+        <span class="s0">return super</span>.onOptionsItemSelected(item);
+    }
+
+}
+
+</pre>
+</body>
+</html>

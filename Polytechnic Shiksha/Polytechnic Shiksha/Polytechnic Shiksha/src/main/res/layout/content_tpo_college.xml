@@ -1,0 +1,2011 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TPO_College_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/heading_color"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/cardv_Com_Name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_Com_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintBottom_toTopOf="@+id/cardv_com_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TPO_College_Name">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_comp_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/ed_comp_name"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Company Name*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/ed_comp_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:hint="Enter Company Name.."
+                        android:inputType="textPersonName"
+                        android:minHeight="48dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_com_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/rectangle_shape"
+                app:cardBackgroundColor="#ECEFEF"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardv_Com_Name">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_comp_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/et_comp_address"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Company Address"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_comp_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:hint="Enter Company Address"
+                        android:inputType="textLongMessage|textPersonName"
+                        android:minHeight="48dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_web_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintBottom_toTopOf="@+id/cardv_com_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TPO_College_Name">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_web_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/ed_comp_name"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Company Website URL"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_web_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:hint="For Example www.abc.com"
+                        android:inputType="textWebEmailAddress"
+                        android:minHeight="48dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_com_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintBottom_toTopOf="@+id/cardv_com_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TPO_College_Name">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_company_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/ed_comp_name"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Company Profile*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_company_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:hint="Enter Brief about Company"
+                        android:inputType="textLongMessage|textMultiLine"
+                        android:isScrollContainer="true"
+                        android:minHeight="48dp"
+                        android:singleLine="false"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_eligible_colleges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardv_com_add">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_eligible_college"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Eligible Colleges*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_allgovt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="All GOVERNMENT COLLEGES"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_allpvt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ALL PRIVATE COLLEGES"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gpcajmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC AJMER"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcalwar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC ALWAR"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbagidora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BAGIDORA"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbanswara"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BANSWARA"
+                        android:textSize="17sp" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbaran"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BARAN"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbarmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BARMER"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbharatpur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BHARATPUR"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbhilwara"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BHILWARA"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbikaner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BIKANER"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcbundi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC BUNDI"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcchittorgarh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC CHITTORGARH"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcchuru"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC CHURU"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcdausa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC DAUSA"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcdholpur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC DHOLPUR"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcdungarpur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC DUNGARPUR"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpchanumangarh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC HANUMANGARH"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcjaipur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC JAIPUR"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcjaisalmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC JAISALMER"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcjalore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC JALORE"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcjhalawar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC JHALAWAR"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcjhunjhunu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC JHUNJHUNU"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcjodhpur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC JODHPUR"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpckaroli"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC KAROLI"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpckelwara"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC KELWARA"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpckota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC KOTA"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcnagore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC NAGORE"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcneemrana"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC NEEMRANA"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcpali"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC PALI"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcpratapgarh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC PRATAPGARH"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcrajsamand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC RAJSAMAND"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gpcsawaimadhopur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC SAWAIMADHOPUR"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gpcsikar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC SIKAR"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gpcsirohi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC SIROHI"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gpcsriganganagar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC SRIGANGANAGAR"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gpctonk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC TONK"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gpcudaipur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GPC UDAIPUR"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpcajmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC AJMER"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpcbharatpur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC BHARATPUR"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpcbikaner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC BIKANER"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpcjaipur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC JAIPUR"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpcjodhpur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC JODHPUR"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpckota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC KOTA"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpcsanganer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC SANGANER"
+                        android:textSize="17sp" />
+                    <CheckBox
+                        android:id="@+id/cb_gwpcudaipur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GWPC UDAIPUR"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_eligible_branches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardv_com_add">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_eligible_branch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Eligible Branches*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_are"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ARCHITECTURE ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_che"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CHEMICAL ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_cee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CIVIL ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_cce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CIVIL(CONSTRUCTION) ENGINEERING"
+                        android:textSize="17sp" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_cse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="COMPUTER SCIENCE AND ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_ee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ELECTRICAL ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_ele"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ELECTRONICS ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_efe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ELECTRONICS (FIBER OPTICS COMMUNICATION) ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_elre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ELECTRONICS (ROBOTICS) ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_ite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="INFORMATION TECHNOLOGY"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_iee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="INSTRUMENTATION ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_me"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MECHANICAL ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_mae"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MECHANICAL (AUTOMOBILE) ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_mpe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MECHANICAL (PRODUCTION) ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_mre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MECHANICAL (RAC) ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_pe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PETROLEUM ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_plte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PLASTIC TECHNOLOGY"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_prte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PRINTING TECHNOLOGY"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_hmcte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="HOTEL MANAGEMENT AND CATERING TECHNOLOGY"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_psrte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Post Diploma in POLYMER SCIENCE AND RUBBER TECHNOLOGY"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_mte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MECHATRONICS"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_cfise"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CYBER FORENSICS AND INFORMATION SECURITY"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_cene"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CIVIL AND ENVIRONMENT ENGINEERING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_bcne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="BEAUTY CULTURE"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_cane"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="COMMERCIAL ART"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_cddmne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="COSTUME DESIGN AND DRESS MAKING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_idne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="INTERIOR DECORATION"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_momne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MODERN OFFICE MANAGEMENT"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_tdne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TEXTILE DESIGN"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_fdne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="FASHION DESIGNING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_ftdne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="FASHION and TEXTILE DESIGNING"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_vgne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="VISUAL GRAPHICS"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_pass_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintBottom_toTopOf="@+id/cardv_com_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TPO_College_Name">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_pass_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Passing Year*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_passyear1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2021"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_passyear2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2020"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_passyear3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2019"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_passyear4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2018"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_passyear5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2017"
+                        android:textSize="17sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_gender_require"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gender Requirement*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:baselineAligned="false">
+
+                        <RadioButton
+                            android:id="@+id/rb_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Male Only"
+                            android:textSize="17sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Female Only"
+                            android:textSize="17sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb_female_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Not Applicable"
+                            android:textSize="17sp" />
+                    </RadioGroup>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_edu_require"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_edu_require"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Min. Percentage Requirement"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_tenth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="10th %"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/et_tenth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Enter 10th Percentage"
+                            android:inputType="numberDecimal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_twelth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="12th %"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/et_twelth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Enter 12th Percentage"
+                            android:inputType="numberDecimal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_diploma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Diploma (Aggregate %)"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/et_diploma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Enter diploma aggregate percentage"
+                            android:inputType="numberDecimal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_backpaper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Back Paper Allowed"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_backpaper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb_bp_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="YES" />
+
+                            <RadioButton
+                                android:id="@+id/rb_bp_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="NO" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_yes_backpaper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Enter Number of Allowed Back Paper"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/et_bakpaper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Fill Number of Back Paper Allowed"
+                            android:inputType="number" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_post_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_post_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:text="Requirement/Required Post Detail*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_designation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Designation"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/ed_designation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="Enter Designation"
+                            android:inputType="textPersonName" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_pay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Salary"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/ed_pay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="Enter Pay per month"
+                            android:inputType="textMultiLine|number" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_total_post"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Total Opening/Post"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/ed_total_post"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Enter number of posts"
+                            android:inputType="number"
+                            android:isScrollContainer="true" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_facilities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_facilities"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Other Facilities"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_residential"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Boarding and Lodging Facility"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_resid_faci"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="end|center_vertical"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb_rf_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="YES" />
+
+                            <RadioButton
+                                android:id="@+id/rb_rf_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="NO" />
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_transport"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Transport Facility"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_trans_faci"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb_tf_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="YES" />
+
+                            <RadioButton
+                                android:id="@+id/rb_tf_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="NO" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_food"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Food Facility"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_food_faci"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb_ff_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="YES" />
+
+                            <RadioButton
+                                android:id="@+id/rb_ff_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="NO" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_other_facility"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Other Facilities"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/ed_other_facility"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="right|center_vertical"
+                            android:hint="Enter Other facilities if any.."
+                            android:inputType="textMultiLine" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_rec_process"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_process"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Recruitment Process"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_ppt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/process_ppt"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_aptitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Aptitude Written Test"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_online_test"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Online Test"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_hr_interview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="HR Interview"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_tech_written"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Technical Written Test"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_gd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Group Discussion"
+                        android:textSize="17sp" />
+
+                    <CheckBox
+                        android:id="@+id/cb_tech_interview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Technical Interview"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_doc_require"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_doc_require"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Important Documents Required During Campus"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/rectangle_shape"
+                        android:orientation="vertical"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp">
+
+                        <TextView
+                            android:id="@+id/tv_copy_doc_require"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1. Photo Copy of Documents Required"
+                            android:textColor="@color/heading_color"
+                            android:textSize="20sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_tenth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10th Mark Sheet"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_tenth_c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10th Certificate"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_twelth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="12th Mark Sheet"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_twelth_c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="12th Certificate"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_diploma"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Diploma All Semester/Year Mark Sheet"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_diploma_c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Diploma Certificate/Provisional Certificate"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_pan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="PAN Card"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_aadhar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Aadhar Card"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_bank_pass_book"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bank Pass Book First Page"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/rectangle_shape"
+                        android:orientation="vertical"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp">
+
+                        <TextView
+                            android:id="@+id/tv_original_doc_require"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2. Original Documents Required"
+                            android:textColor="@color/heading_color"
+                            android:textSize="20sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_tenth_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10th Mark Sheet"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_tenthc_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10th Certificate"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_twelth_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="12th Mark Sheet"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_twelthc_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="12th Certificate"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_diploma_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Diploma All Semester/Year Mark Sheet"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_diplomac_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Diploma Certificate/Provisional Certificate"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_pan_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="PAN Card"
+                            android:textSize="17sp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_aadhar_ori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Aadhar Card"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/rectangle_shape"
+                        android:orientation="vertical"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp">
+
+                        <TextView
+                            android:id="@+id/tv_resume"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="3. Typed Resume/CV Required"
+                            android:textColor="@color/heading_color"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_resume_req"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb_cv_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="YES"
+                                android:textSize="17sp" />
+
+                            <RadioButton
+                                android:id="@+id/rb_cv_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="NO"
+                                android:textSize="17sp" />
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/rectangle_shape"
+                        android:orientation="vertical"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp">
+
+                        <TextView
+                            android:id="@+id/tv_photo_req"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="4. Passport Size Color Photograph Required"
+                            android:textColor="@color/heading_color"
+                            android:textSize="20sp" />
+
+                        <Spinner
+                            android:id="@+id/sp_photo_req"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:drawable/btn_dropdown"
+                            tools:listitem="1,2,3,4,5,6,7,8,9,10,Not Required" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_venue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_venue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Placement Venue, Date and Time*"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_campus_venue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Venue"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/ed_c_venue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Enter Placement Venue"
+                            android:inputType="textPersonName" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Reporting Date"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/ed_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="Enter Reporting Date"
+                            android:inputType="date" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_c_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:text="Reporting Time"
+                            android:textColor="@color/heading_color"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/ed_c_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="Enter Reporting Time"
+                            android:inputType="textPersonName|time" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_registration_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_registration_form"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/ed_comp_name"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Registration Form Link"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_registration_form"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:hint="For Example www.abc.com"
+                        android:inputType="textWebEmailAddress"
+                        android:minHeight="48dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_contact_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_contact_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Contact Person Name with Contact Number for any query"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/ed_contact_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:hint="Enter Name with 10 digit contact number"
+                        android:inputType="textMultiLine"
+                        android:maxLength="10"
+                        android:minHeight="48dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv_other_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:contentPadding="1dp"
+                app:contentPaddingBottom="1dp"
+                app:contentPaddingLeft="1dp"
+                app:contentPaddingRight="1dp"
+                app:contentPaddingTop="1dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_other_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Any Other Information that is not mentioned above"
+                        android:textColor="@color/heading_color"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/ed_other_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:hint="Any Other Information if any.."
+                        android:inputType="textLongMessage|textMultiLine"
+                        android:minHeight="48dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/button_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="PREVIEW"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

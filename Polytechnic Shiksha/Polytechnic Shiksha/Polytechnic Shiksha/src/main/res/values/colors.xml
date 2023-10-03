@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_color">#2C2C8F</color>
+    <color name="signal_bar_color">#FF000000</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="blacklight">#FFD2D0D0</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="link_color">#03A9F4</color>
+    <color name="back_screen">#FFFFFFFF</color>
+    <color name="card_background">#128E7A16</color>
+    <color name="text_color">#3700B3</color>
+    <color name="spinner_text_color">#FF000000</color>
+    <color name="heading_color">#AE0321</color>
+    <color name="warning_color">#FB0202</color>
+    <color name="btn_color">#2C2C8F</color>
+</resources>

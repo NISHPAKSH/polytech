@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>syllabus.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+syllabus.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.ttc.polytechnicshiksha;
+
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.text.method.LinkMovementMethod;
+<span class="s0">import </span>android.view.Menu;
+<span class="s0">import </span>android.view.MenuItem;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.TextView;
+
+<span class="s0">import </span>androidx.appcompat.app.AlertDialog;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+
+<span class="s0">public class </span>syllabus <span class="s0">extends </span>AppCompatActivity {
+    <span class="s0">public static </span>String url;
+    <span class="s0">public static </span>String title;
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_syllabus);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle(<span class="s2">&quot;Syllabus&quot;</span>);
+
+        TextView textView1 =(TextView)findViewById(R.id.semester_scheme);
+        textView1.setClickable(<span class="s0">true</span>);
+        textView1.setMovementMethod(LinkMovementMethod.getInstance());
+        <span class="s3">//String text1 = &quot;&lt;a href='http://techedu.rajasthan.gov.in/BTER/Diploma_Programmes_SEMESTER.htm'&gt; 1. Semester Scheme Syllabus. Click to visit this link &lt;/a&gt;&quot;;</span>
+        <span class="s3">//textView1.setText(Html.fromHtml(text1));</span>
+        textView1.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                url = <span class="s2">&quot;http://techedu.rajasthan.gov.in/BTER/Diploma_Programmes_SEMESTER.htm&quot;</span>;
+
+                title = <span class="s2">&quot;Semester Scheme&quot;</span>;
+                Intent web = <span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,WebViewActivity.<span class="s0">class</span>);
+                web.putExtra(<span class="s2">&quot;url&quot;</span>,url);
+                web.putExtra(<span class="s2">&quot;title&quot;</span>,title);
+                startActivity(web);
+
+            }
+        });
+
+        TextView textView2 =(TextView)findViewById(R.id.yearly_scheme);
+        textView2.setClickable(<span class="s0">true</span>);
+        textView2.setMovementMethod(LinkMovementMethod.getInstance());
+        <span class="s3">//String text2 = &quot;&lt;a href='http://www.techedu.rajasthan.gov.in/BTER/Diploma_Programmes.htm'&gt; 2. Yearly Scheme Sylllabus. Click to visit this link &lt;/a&gt;&quot;;</span>
+        <span class="s3">//textView2.setText(Html.fromHtml(text2));</span>
+        textView2.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                url = <span class="s2">&quot;http://www.techedu.rajasthan.gov.in/BTER/Diploma_Programmes.htm&quot;</span>;
+
+                title = <span class="s2">&quot;Yearly Scheme&quot;</span>;
+                Intent web = <span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,WebViewActivity.<span class="s0">class</span>);
+                web.putExtra(<span class="s2">&quot;url&quot;</span>,url);
+                web.putExtra(<span class="s2">&quot;title&quot;</span>,title);
+                startActivity(web);
+
+            }
+        });
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onCreateOptionsMenu(Menu menu) {
+        <span class="s3">// Inflate the menu; this adds items to the action bar if it is present.</span>
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        <span class="s0">return true</span>;
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onOptionsItemSelected(MenuItem item) {
+        <span class="s3">// Handle action bar item clicks here. The action bar will</span>
+        <span class="s3">// automatically handle clicks on the Home/Up button, so long</span>
+        <span class="s3">// as you specify a parent activity in AndroidManifest.xml.</span>
+        <span class="s0">int </span>id = item.getItemId();
+
+        <span class="s3">//noinspection SimplifiableIfStatement</span>
+
+        <span class="s0">if </span>(id == R.id.home) {
+            startActivity(<span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,MainActivity.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.important_link) {
+            startActivity(<span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,imp_link.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.Syllabus) {
+            startActivity(<span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,syllabus.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.feedback_Suggestion) {
+            url = <span class="s2">&quot;https://docs.google.com/forms/d/e/1FAIpQLSdH0e-9UScRXX7-VbkF4G-ZMOGSVOZdknnvDmw3256VsEQwTg/viewform?usp=sf_link&quot;</span>;
+            title = <span class="s2">&quot;Feedback &amp; Suggestions&quot;</span>;
+            Intent web = <span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,WebViewActivity.<span class="s0">class</span>);
+            web.putExtra(<span class="s2">&quot;url&quot;</span>,url);
+            web.putExtra(<span class="s2">&quot;title&quot;</span>,title);
+            startActivity(web);
+        }
+        <span class="s0">if </span>(id == R.id.exit) {
+            <span class="s0">new </span>AlertDialog.Builder(<span class="s0">this</span>)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(<span class="s2">&quot;Closing Activity&quot;</span>)
+                    .setMessage(<span class="s2">&quot;Are you sure you want to close this activity?&quot;</span>)
+                    .setPositiveButton(<span class="s2">&quot;Yes&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        <span class="s0">public void </span>onClick(DialogInterface dialog, <span class="s0">int </span>which) {
+                            finishAffinity();
+                        }
+
+                    })
+                    .setNegativeButton(<span class="s2">&quot;No&quot;</span>, <span class="s0">null</span>)
+                    .show();
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.contact_us) {
+            startActivity(<span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,contact_us.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">if </span>(id == R.id.legal) {
+            startActivity(<span class="s0">new </span>Intent(syllabus.<span class="s0">this</span>,disclaimer.<span class="s0">class</span>));
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">return super</span>.onOptionsItemSelected(item);
+    }
+}</pre>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>content_electure.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000; font-style: italic;}
+.s1 { color: #0000ff; font-weight: bold;}
+.s2 { color: #000000;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #000080; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+content_electure.xml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s3">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">?&gt;</span>
+
+&lt;<span class="s4">androidx.constraintlayout.widget.ConstraintLayout </span><span class="s1">xmlns:android</span><span class="s3">=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="s1">xmlns:app</span><span class="s3">=&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="s1">xmlns:tools</span><span class="s3">=&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+    <span class="s1">android:layout_height</span><span class="s3">=&quot;match_parent&quot;</span>
+    <span class="s1">android:background</span><span class="s3">=&quot;@color/back_screen&quot;</span>
+    <span class="s1">app:layout_behavior</span><span class="s3">=&quot;@string/appbar_scrolling_view_behavior&quot;</span>&gt;
+
+
+  &lt;<span class="s4">LinearLayout</span>
+      <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+      <span class="s1">android:layout_height</span><span class="s3">=&quot;match_parent&quot;</span>
+      <span class="s1">android:orientation</span><span class="s3">=&quot;vertical&quot;</span>&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_elect_course&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;30dp&quot;</span>
+        <span class="s1">android:layout_marginBottom</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">android:gravity</span><span class="s3">=&quot;center|end&quot;</span>
+        <span class="s1">android:textSize</span><span class="s3">=&quot;25sp&quot; </span>/&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_elect_year&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:layout_marginBottom</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">android:gravity</span><span class="s3">=&quot;center|end&quot;</span>
+        <span class="s1">android:textSize</span><span class="s3">=&quot;25sp&quot; </span>/&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_elect_branch&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:layout_marginBottom</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">android:gravity</span><span class="s3">=&quot;center|end&quot;</span>
+        <span class="s1">android:textSize</span><span class="s3">=&quot;25sp&quot; </span>/&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_elect_subcode&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:layout_marginBottom</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">android:gravity</span><span class="s3">=&quot;center|end&quot;</span>
+        <span class="s1">android:textSize</span><span class="s3">=&quot;25sp&quot; </span>/&gt;
+
+    &lt;<span class="s4">Spinner</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/spinner_elect_unit&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;50dp&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:layout_marginBottom</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:background</span><span class="s3">=&quot;@android:drawable/btn_dropdown&quot;</span>
+        <span class="s1">android:gravity</span><span class="s3">=&quot;center|end&quot;</span>
+        <span class="s1">android:textSize</span><span class="s3">=&quot;25sp&quot; </span>/&gt;
+
+    &lt;<span class="s4">Button</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/electbtngo&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;176dp&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;69dp&quot;</span>
+        <span class="s1">android:layout_gravity</span><span class="s3">=&quot;center&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:layout_marginBottom</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s1">android:text</span><span class="s3">=&quot;@string/go&quot; </span>/&gt;
+  &lt;/<span class="s4">LinearLayout</span>&gt;
+
+&lt;/<span class="s4">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</pre>
+</body>
+</html>

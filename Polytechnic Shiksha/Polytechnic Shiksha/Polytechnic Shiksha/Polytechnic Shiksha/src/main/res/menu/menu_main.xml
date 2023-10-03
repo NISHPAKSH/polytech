@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ttc.polytechnicshiksha.MainActivity">
+    <item
+        android:id="@+id/home"
+        android:orderInCategory="101"
+        android:title="@string/action_settings"
+        android:icon="@mipmap/home_icon"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/important_link"
+        android:orderInCategory="101"
+        android:title="@string/important_link" />
+    <item
+        android:id="@+id/Syllabus"
+        android:title="@string/syllabus"
+        android:orderInCategory="102"/>
+    <item
+        android:id="@+id/feedback_Suggestion"
+        android:title="@string/feedback_and_suggestion"
+        android:orderInCategory="103"/>
+    <item
+        android:id="@+id/legal"
+        android:title="@string/polytechnic_shiksha_legal"
+        android:orderInCategory="104"/>
+    <item
+        android:id="@+id/contact_us"
+        android:title="@string/contact_us"
+        android:orderInCategory="105"/>
+    <item
+        android:id="@+id/exit"
+        android:title="@string/exit"
+        android:orderInCategory="106"/>
+</menu>
